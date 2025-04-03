@@ -1,0 +1,9 @@
+<p>login works!</p>
+
+<form (ngSubmit)="handleSubmit()" #myForm="ngForm">
+  <label for="username">Brugernavn:</label><br>
+  <input type="text" [(ngModel)]="Username" name="Username" required><br>
+  <label for="pwd">Password:</label><br>
+  <input type="password" [(ngModel)]="Password" name="pwd" required><br>
+  <input type="Submit"  id="loginButton" value="Login">
+</form>

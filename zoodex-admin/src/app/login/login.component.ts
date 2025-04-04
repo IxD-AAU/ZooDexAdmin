@@ -19,7 +19,6 @@ export class LoginComponent {
     console.log(this.Username, 'logged in with', this.Password);
     if (this.Username == "Zoodex"){
       if (this.Password == "ostemad"){
-        console.log("BENIS");
         window.location.href = '/Dashboard';
       }
       else{

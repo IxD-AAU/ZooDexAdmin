@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  IsOpen = false;
+  IsOpen = true;
 
   constructor(private sidebarService: SidebarService, private router: Router){
     this.sidebarService.sidebarState$.subscribe(state =>{

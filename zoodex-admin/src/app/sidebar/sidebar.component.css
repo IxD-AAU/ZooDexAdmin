@@ -1,0 +1,30 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #333;
+  color: white;
+  position: fixed;
+  left: -250px;
+  top: 0;
+  transition: left 0.3s ease;
+  padding: 20px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}

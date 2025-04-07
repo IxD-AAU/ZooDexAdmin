@@ -1,7 +1,13 @@
 <app-sidebar></app-sidebar>
-<section>
+<section *ngIf="isDataReady; else loading">
   <article>
-    <p>{{ pageText.JJENSEN.FirstName }}</p>
-    <p> Test </p>
+    <p>Fornavn: {{ pageText.PERSONALE.USER1.FirstName }}</p>
+    <p>Efternavn: {{ pageText.PERSONALE.USER1.LastName }} </p>
+    <p>Mail: {{ pageText.PERSONALE.USER1.Mail }}</p>
+    <p>Afdeling: {{ pageText.PERSONALE.USER1.Job}}</p>
   </article>
 </section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>

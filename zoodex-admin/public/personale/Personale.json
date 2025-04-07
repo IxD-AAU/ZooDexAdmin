@@ -1,15 +1,15 @@
 {"PERSONALE":{
-      "JJENSEN":{
+      "USER1":{
         "FirstName": "Jens",
         "LastName": "Jensen",
-        "Mail": "",
-        "Job:": "IT-Support"
+        "Mail": "JJensen@zoodex.dk",
+        "Job": "IT-Support"
     },
-    "HHANSEN":{
+    "USER2":{
       "FirstName": "Hans",
       "LastName": "Hansen",
-      "Mail": "",
-      "Job:": "IT-Support"
+      "Mail": "HHansen@zoodex.dk",
+      "Job": "IT-Support"
     }
 
 

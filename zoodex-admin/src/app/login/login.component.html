@@ -1,9 +1,16 @@
-<p>login works!</p>
-
+<div class="center">
 <form (ngSubmit)="handleSubmit()" #myForm="ngForm">
-  <label for="username">Brugernavn:</label><br>
-  <input type="text" [(ngModel)]="Username" id="Username" name="Username" required><br>
-  <label for="pwd">Password:</label><br>
-  <input type="password" [(ngModel)]="Password" id="pwd" name="pwd" required><br>
+  <!--<label for="username" id="usernameLabel">Brugernavn:</label><br>-->
+  <input type="text" [(ngModel)]="Username" id="Username" name="Username" placeholder="Brugernavn">
+  <!--<label for="pwd" id="PWD">Password:</label><br>--> 
+  <input type="password" [(ngModel)]="Password" id="pwd" name="pwd" placeholder="Password"><br>
   <input type="Submit"  id="loginButton" value="Login">
 </form>
+</div>
+
+<img src="Zoodex logo.png">
+<!--<h1 class="text-3xl font-bold underline">Hello world!
+  'Hello'</h1>
+ <button class="bg-[#5C6D4D] hover:bg-[#A8A46C] text-[#FFFFFF] ..."id = "log ind" >Log ind</button>
+  -->
+  

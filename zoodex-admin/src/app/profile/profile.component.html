@@ -1,1 +1,21 @@
-<p>profile works!</p>
+<app-sidebar></app-sidebar>
+
+<section *ngIf="isDataReady; else loading">
+  <article *ngIf="getUserData() as FinalUser; else DatanotFound">
+    <p> Fornavn: {{ pageText.PERSONALE[UserID].FirstName }} </p>
+    <p> Efternavn: {{ pageText.PERSONALE[UserID].LastName }} </p>
+    <p> Mail: {{ pageText.PERSONALE[UserID].Mail }} </p>
+    <p> Afdeling: {{ pageText.PERSONALE[UserID].Job }} </p>
+    <img src='{{ "personale/Profile_Pictures/" + UserID + ".jpg" }}'>
+  </article>
+
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>
+
+<ng-template #DatanotFound>
+  <h2>Bruger ikke fundet i systemet, kontakt IT support</h2>
+</ng-template>
+

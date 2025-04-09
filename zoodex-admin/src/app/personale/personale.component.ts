@@ -11,15 +11,18 @@ import { PersonaleGetterService } from '../personale-getter.service';
   templateUrl: './personale.component.html',
   styleUrl: './personale.component.css'
 })
-
-
 export class PersonaleComponent implements OnInit {
+
   isDataReady: boolean = false;
   public pageText!: any;
 
-  constructor(public sidebarService: SidebarService, public readonly personaleGetterService: PersonaleGetterService){ }
+  constructor(public sidebarService: SidebarService,
+    public readonly personaleGetterService: PersonaleGetterService
+  ){ }
 
   ngOnInit(): void {
+      this.sidebarService.open();
+
     setTimeout(() => {
       this.pageText = this.personaleGetterService.personale;
       this.isDataReady = true;

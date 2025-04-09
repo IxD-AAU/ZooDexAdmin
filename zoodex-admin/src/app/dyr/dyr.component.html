@@ -1,1 +1,19 @@
-<p>dyr works!</p>
+<app-sidebar></app-sidebar>
+
+<section *ngIf="isDataReady; else loading">
+  <article>
+    <ul>
+      <li>
+        <p> {{pageText.DYR.DYR_1.Name}} </p>
+      </li>
+    </ul>
+  </article>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>
+
+<ng-template #DatanotFound>
+  <h2>Bruger ikke fundet i systemet, kontakt IT support</h2>
+</ng-template>

@@ -1,11 +1,39 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarService } from '../sidebar.service';
+import { CommonModule } from '@angular/common';
+import { DyrGetterService } from '../dyr-getter.service';
 @Component({
   selector: 'app-dyr',
-  imports: [],
+  imports: [SidebarComponent, CommonModule],
   templateUrl: './dyr.component.html',
   styleUrl: './dyr.component.css'
 })
-export class DyrComponent {
+export class DyrComponent implements OnInit {
+
+  isDataReady: boolean = false;
+  public pageText!: any;
+  public dyrData!: string;
+  public animalsInZoo: string[] = [];
+
+  constructor(
+    public sidebarService: SidebarService,
+    public readonly dyrGetterService: DyrGetterService
+  ) { }
+
+  ngOnInit(): void {
+    this.sidebarService.open();
+
+    setTimeout(() => {
+      this.pageText = this.dyrGetterService.dyr;
+      this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
+      this.isDataReady = true;
+      console.log(this.animalsInZoo);
+      console.log(this.pageText);
+
+
+    }, 1000);
+  }
+
 
 }

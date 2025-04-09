@@ -6,8 +6,9 @@
     <p> Efternavn: {{ pageText.PERSONALE[UserID].LastName }} </p>
     <p> Mail: {{ pageText.PERSONALE[UserID].Mail }} </p>
     <p> Afdeling: {{ pageText.PERSONALE[UserID].Job }} </p>
+    <img src='{{ "personale/Profile_Pictures/" + UserID + ".jpg" }}'>
   </article>
-  <img src='{{ "personale/Profile_Pictures/" + UserID + ".jpg" }}'>
+
 </section>
 
 <ng-template #loading>

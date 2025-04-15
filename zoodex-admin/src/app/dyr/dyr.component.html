@@ -3,8 +3,10 @@
 <section *ngIf="isDataReady; else loading">
   <article>
     <ul>
-      <li>
-        <p> {{pageText.DYR.DYR_1.Name}} </p>
+      <li *ngFor="let animalsID of animalsInZoo">
+        <p>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: animalsID}"> {{ pageText.DYR[ animalsID ].Name }} </a>
+        </p>
       </li>
     </ul>
   </article>

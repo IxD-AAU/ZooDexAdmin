@@ -1,0 +1,31 @@
+<app-sidebar></app-sidebar>
+
+<section *ngIf="isDataReady; else loading">
+  <article>
+    <p>Dyr: {{ pageText.DYR[animalID].Name }}</p>
+    <p>Type: {{ pageText.DYR[animalID].Type }}</p>
+    <p>Beskrivelse: {{ pageText.DYR[animalID].Description }}</p>
+    <p>Personlighed: {{pageText.DYR[animalID].Personality }}</p>
+    <table>
+      <tr>
+        <th>Vægt Han</th>
+        <th>Vægt Hun</th>
+      </tr>
+      <tr>
+        <td>{{ pageText.DYR[animalID].WeightMale }}</td>
+        <td>{{ pageText.DYR[animalID].WeightFemale }}</td>
+      </tr>
+    </table>
+    <p>Højde: {{pageText.DYR[animalID].Height}}</p>
+    <p>Hastighed: optil {{pageText.DYR[animalID].Speed}}</p>
+    <p>Unger: {{pageText.DYR[animalID].Young}}</p>
+    <label>
+      I Zoo:
+      <input type="checkbox" [checked]="pageText.DYR[animalID]?.In_Zoo === 'Yes'" disabled/>
+    </label>
+  </article>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>

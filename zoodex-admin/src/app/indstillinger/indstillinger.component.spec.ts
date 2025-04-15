@@ -21,3 +21,4 @@ describe('IndstillingerComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

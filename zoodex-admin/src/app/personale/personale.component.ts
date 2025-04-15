@@ -31,4 +31,7 @@ export class PersonaleComponent implements OnInit {
 
 
   }
+  getKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
 }

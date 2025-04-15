@@ -1,16 +1,23 @@
 <app-sidebar></app-sidebar>
 <section *ngIf="isDataReady; else loading">
   <article>
-    <p>Fornavn: {{ pageText.PERSONALE.USER1.FirstName }}</p>
-    <p>Efternavn: {{ pageText.PERSONALE.USER1.LastName }} </p>
-    <p>Mail: {{ pageText.PERSONALE.USER1.Mail }}</p>
-    <p>Afdeling: {{ pageText.PERSONALE.USER1.Job}}</p>
-  </article>
-  <article>
-    <p>Fornavn: {{ pageText.PERSONALE.USER2.FirstName }}</p>
-    <p>Efternavn: {{ pageText.PERSONALE.USER2.LastName }} </p>
-    <p>Mail: {{ pageText.PERSONALE.USER2.Mail }}</p>
-    <p>Afdeling: {{ pageText.PERSONALE.USER2.Job}}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Fornavn</th>
+          <th>Efternavn</th>
+          <th>Mail</th>
+          <th>Afdeling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of getKeys(pageText.PERSONALE)">
+          <td>{{ pageText.PERSONALE[key].FirstName }}</td>
+          <td>{{ pageText.PERSONALE[key].LastName }}</td>
+          <td>{{ pageText.PERSONALE[key].Mail }}</td>
+          <td>{{ pageText.PERSONALE[key].Job }}</td>
+        </tr>
+    </table>
   </article>
 </section>
 

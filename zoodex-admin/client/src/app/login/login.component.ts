@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public pageText!: any;
   Username: string = '';
   Password: string = '';
-  public UserID!: string;
+  public UserID!: number;
   public PasswordCheck!: any;
   public PasswordHolder!: string;
 
@@ -29,17 +29,24 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.PasswordCheck = this.personaleGetterService.personale;
+    console.log(this.PasswordCheck);
   }
 
   handleSubmit(){
     console.log(this.Username, 'logged in with', this.Password);
-    for (const userId in this.PasswordCheck.PERSONALE) {
-      if (this.PasswordCheck.PERSONALE[userId].Login === this.Username) {
-        this.UserID = userId;
+    let i = 0;
+    const length = this.PasswordCheck.length;
+    while (i < length) {
+      if (this.Username == this.PasswordCheck[i].Username){
+        this.UserID = i;
         break;
       }
+      else {
+        i++;
+      }
     }
-      this.PasswordHolder = String(this.PasswordCheck.PERSONALE[this.UserID].Password);
+
+      this.PasswordHolder = this.PasswordCheck[this.UserID].Password;
       console.log(this.PasswordHolder, 'is the password for', this.Username);
 
       if (this.Password == this.PasswordHolder) {

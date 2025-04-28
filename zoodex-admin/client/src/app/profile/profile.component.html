@@ -2,7 +2,7 @@
 
 <section *ngIf="isDataReady; else loading">
   <article *ngIf="getUserData() as FinalUser; else DatanotFound">
-    <p> Fornavn: {{ pageText.PERSONALE[UserID].FirstName }} </p>
+    <p> Fornavn: {{ pageText[ProfileData].FirstName }} </p>
     <p> Efternavn: {{ pageText.PERSONALE[UserID].LastName }} </p>
     <p> Mail: {{ pageText.PERSONALE[UserID].Mail }} </p>
     <p> Afdeling: {{ pageText.PERSONALE[UserID].Job }} </p>

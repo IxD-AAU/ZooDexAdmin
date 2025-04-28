@@ -14,7 +14,7 @@ export class PersonaleGetterService {
   }
 
   private setTranslations(){
-    this.http.get('personale/Personale.json').subscribe( data => {
+    this.http.get('http://localhost:3000/api/personale').subscribe( data => {
       this.personale = data;
     });
   }

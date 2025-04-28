@@ -18,6 +18,9 @@ export class ProfileComponent implements OnInit {
   public pageText!: PageText;
   username: string = " ";
   public UserID!: string;
+  public ProfileData!: number;
+  pageTextLength: number = 0;
+
 
   constructor(
     public sidebarService: SidebarService,
@@ -27,11 +30,34 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.sidebarService.open();
+    this.pageText = this.personaleGetterService.personale;
+    let n = true;
+    let i = 0;
+    while (n){
+      if(this.pageText[i].FirstName != null && this.pageText[i].FirstName != undefined){
+        this.pageTextLength++;
+        i++;
+      }
+      else{
+        n = false;
+      }
+    }
+    console.log(this.pageTextLength, "is the length of the page text array.");
+
 
     setTimeout(() => {
       this.username = this.usernameGetterService.getUsername();
-      this.pageText = this.personaleGetterService.personale;
       this.isDataReady = true;
+
+      let profileData = this.getProfileData();
+      if (profileData !== null || profileData !== undefined) {
+        this.ProfileData = profileData;
+        console.log(this.ProfileData);
+        console.log(profileData);
+        console.log("Profile Data:", this.ProfileData);
+      } else {
+        console.log("Profile data not found.");
+      }
 
       const userData = this.getUserData();
       if (userData) {
@@ -43,6 +69,21 @@ export class ProfileComponent implements OnInit {
       }
     }, 10);
   }
+
+  getProfileData(): any{
+    let i = 0;
+    while (i <= this.pageTextLength) {
+      if (this.pageText[i].Firstname == this.username) {
+        return i;
+      }
+      else {
+        i++;
+      }
+    }
+
+  }
+
+
 
   getUserData(): { id: string; data: User } | null {
     if (!this.pageText?.PERSONALE) {

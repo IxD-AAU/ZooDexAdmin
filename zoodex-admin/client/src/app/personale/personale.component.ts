@@ -16,7 +16,9 @@ export class PersonaleComponent implements OnInit {
   isDataReady: boolean = false;
   public pageText!: any;
 
-  constructor(public sidebarService: SidebarService,
+
+  constructor(
+    public sidebarService: SidebarService,
     public readonly personaleGetterService: PersonaleGetterService
   ){ }
 
@@ -26,12 +28,8 @@ export class PersonaleComponent implements OnInit {
     setTimeout(() => {
       this.pageText = this.personaleGetterService.personale;
       this.isDataReady = true;
-      console.log(this.pageText);
     }, 1000);
 
 
-  }
-  getKeys(obj: any): string[] {
-    return Object.keys(obj);
   }
 }

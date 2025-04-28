@@ -11,11 +11,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let key of getKeys(pageText.PERSONALE)">
-          <td>{{ pageText.PERSONALE[key].FirstName }}</td>
-          <td>{{ pageText.PERSONALE[key].LastName }}</td>
-          <td>{{ pageText.PERSONALE[key].Mail }}</td>
-          <td>{{ pageText.PERSONALE[key].Job }}</td>
+        <tr *ngFor="let person of pageText; let i = index">
+          <td>{{ pageText[i].FirstName }}</td>
+          <td>{{ pageText[i].LastName }}</td>
+          <td>{{ pageText[i].Mail}}</td>
+          <td>{{ pageText[i].Job }}</td>
         </tr>
     </table>
   </article>

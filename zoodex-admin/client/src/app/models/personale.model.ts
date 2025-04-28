@@ -12,5 +12,7 @@ export interface Personale {
 
 export interface PageText {
   PERSONALE: Personale;
+  [key: number]: any;
+  Username: string;
 }
 

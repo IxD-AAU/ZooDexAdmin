@@ -18,4 +18,7 @@ export class PersonaleGetterService {
       this.personale = data;
     });
   }
+  public getPersonaleData(){
+    return (this.http.get('http://localhost:3000/api/personale'));
+  }
 }

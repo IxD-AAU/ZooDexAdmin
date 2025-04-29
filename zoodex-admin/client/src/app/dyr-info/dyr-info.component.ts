@@ -4,6 +4,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SidebarService } from '../sidebar.service';
 import { CommonModule } from '@angular/common';
 import { DyrGetterService } from '../dyr-getter.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dyr-info',
@@ -18,22 +19,27 @@ export class DyrInfoComponent implements OnInit {
   public animalsInZoo: string[] = [];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     public sidebarService: SidebarService,
     public readonly dyrGetterService: DyrGetterService
-
   ) {}
 
    ngOnInit():void {
     this.sidebarService.open();
+
     this.route.queryParams.subscribe((params) => {
       this.animalID = params['id'];
       console.log('Animal ID:', this.animalID);
   });
- setTimeout(() => {
-  this.pageText = this.dyrGetterService.dyr;
-  this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
-  this.isDataReady = true;
- })
+    setTimeout(() => {
+      this.pageText = this.dyrGetterService.dyr;
+      this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
+      this.isDataReady = true;
+})
 }
+  reDirectToEdit():void {
+    this.router.navigate(['/Dyr-Info-Edit'], { queryParams: { id: this.animalID } });
+  }
+
 }

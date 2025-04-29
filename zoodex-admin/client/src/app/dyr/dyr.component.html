@@ -3,9 +3,9 @@
 <section *ngIf="isDataReady; else loading">
   <article>
     <ul>
-      <li *ngFor="let animalsID of animalsInZoo">
+      <li *ngFor="let animals of pageText; let i = index">
         <p>
-          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: animalsID}"> {{ pageText.DYR[ animalsID ].Name }} </a>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i}"> {{ pageText[i].Name }} </a>
         </p>
       </li>
     </ul>

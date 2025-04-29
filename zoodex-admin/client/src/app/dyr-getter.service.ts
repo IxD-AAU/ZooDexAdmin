@@ -13,7 +13,7 @@ export class DyrGetterService {
    }
 
    private setTranslations() {
-    this.http.get('Dyr/Dyr.json').subscribe(data => {
+    this.http.get('http://localhost:3000/api/dyr').subscribe(data => {
       this.dyr = data;
     });
   }

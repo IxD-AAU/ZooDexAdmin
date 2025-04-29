@@ -5,6 +5,7 @@ import { PersonaleGetterService } from '../personale-getter.service';
 import { CommonModule } from '@angular/common';
 import { UsernameGetterService } from '../username-getter.service';
 import { PageText, User} from '../models/personale.model';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -15,11 +16,10 @@ import { PageText, User} from '../models/personale.model';
 export class ProfileComponent implements OnInit {
 
   isDataReady: boolean = false;
-  public pageText!: PageText;
+  public pageText!: any;
   username: string = " ";
-  public UserID!: string;
+  public UserID!: number;
   public ProfileData!: number;
-  pageTextLength: number = 0;
 
 
   constructor(
@@ -30,50 +30,19 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.sidebarService.open();
-    this.pageText = this.personaleGetterService.personale;
-    let n = true;
-    let i = 0;
-    while (n){
-      if(this.pageText[i].FirstName != null && this.pageText[i].FirstName != undefined){
-        this.pageTextLength++;
-        i++;
-      }
-      else{
-        n = false;
-      }
-    }
-    console.log(this.pageTextLength, "is the length of the page text array.");
-
-
     setTimeout(() => {
+      this.pageText = this.personaleGetterService.personale
       this.username = this.usernameGetterService.getUsername();
       this.isDataReady = true;
-
-      let profileData = this.getProfileData();
-      if (profileData !== null || profileData !== undefined) {
-        this.ProfileData = profileData;
-        console.log(this.ProfileData);
-        console.log(profileData);
-        console.log("Profile Data:", this.ProfileData);
-      } else {
-        console.log("Profile data not found.");
-      }
-
-      const userData = this.getUserData();
-      if (userData) {
-        this.UserID = userData.id;
-        console.log("User ID:", this.UserID);
-      }
-      else {
-        console.log("User not found in the data.");
-      }
-    }, 10);
+      this.ProfileData = this.getProfileData();
+      this.UserID = this.getUserData()+1;
+    }, 1000);
   }
 
   getProfileData(): any{
     let i = 0;
-    while (i <= this.pageTextLength) {
-      if (this.pageText[i].Firstname == this.username) {
+    while (i <= (this.pageText).length) {
+      if (this.pageText[i].Username == this.username) {
         return i;
       }
       else {
@@ -85,17 +54,16 @@ export class ProfileComponent implements OnInit {
 
 
 
-  getUserData(): { id: string; data: User } | null {
-    if (!this.pageText?.PERSONALE) {
-      return null;
-    }
-
-    for (const [key, value] of Object.entries(this.pageText.PERSONALE)) {
-      if (value.Login === this.username) {
-        return { id: key, data: value };
+  getUserData(): any {
+    let i = 0;
+    while (i <= (this.pageText).length) {
+      if (this.pageText[i].Username == this.username) {
+        return i;
+      }
+      else {
+        i++;
       }
     }
-    return null;
     }
   }
 

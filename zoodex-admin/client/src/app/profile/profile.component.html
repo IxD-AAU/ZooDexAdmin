@@ -1,12 +1,12 @@
 <app-sidebar></app-sidebar>
 
 <section *ngIf="isDataReady; else loading">
-  <article *ngIf="getUserData() as FinalUser; else DatanotFound">
+  <article>
     <p> Fornavn: {{ pageText[ProfileData].FirstName }} </p>
-    <p> Efternavn: {{ pageText.PERSONALE[UserID].LastName }} </p>
-    <p> Mail: {{ pageText.PERSONALE[UserID].Mail }} </p>
-    <p> Afdeling: {{ pageText.PERSONALE[UserID].Job }} </p>
-    <img src='{{ "personale/Profile_Pictures/" + UserID + ".jpg" }}'>
+    <p> Efternavn: {{ pageText[ProfileData].LastName }} </p>
+    <p> Mail: {{ pageText[ProfileData].Mail }} </p>
+    <p> Afdeling: {{ pageText[ProfileData].Job }} </p>
+    <img src='{{ "personale/Profile_Pictures/USER" + UserID + ".jpg" }}'>
   </article>
 
 </section>

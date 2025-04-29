@@ -28,9 +28,7 @@ export class DyrComponent implements OnInit {
 
     setTimeout(() => {
       this.pageText = this.dyrGetterService.dyr;
-      this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
       this.isDataReady = true;
-      console.log(this.animalsInZoo);
       console.log(this.pageText);
 
 

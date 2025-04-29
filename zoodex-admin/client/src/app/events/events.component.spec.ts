@@ -10,7 +10,7 @@ describe('EventsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EventsComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EventsComponent);
     component = fixture.componentInstance;

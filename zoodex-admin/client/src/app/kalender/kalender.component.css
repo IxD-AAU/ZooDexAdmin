@@ -1,0 +1,243 @@
+.calendar-container {
+  display: block;
+  width: 70%;
+  margin-left: 25%;
+  height: auto;
+  overflow: visible;
+}
+
+.calendar-navigation{
+  width: 100%; /* Ensure the navigation takes full width */
+  display: flex;
+  justify-content: space-between; /* Space out the view-switcher and month-navigation */
+  align-items: center;
+  margin-bottom: 5%;
+} 
+
+.view-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add spacing between the label, dropdown, and button */
+}
+
+.month-navigation {
+  position: relative; /* Enable absolute positioning for the title */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out the buttons */
+  width: 100%;
+}
+
+.month-navigation button {
+  position: relative; /* Keep buttons positioned normally */
+  padding: 5px 10px; /* Add padding to buttons */
+}
+
+.month-navigation .previous-button {
+  margin-left: 10%; /* Add spacing from the left side of the calendar */
+}
+
+.month-navigation .next-button {
+  margin-right: 10%; /* Add spacing from the right side of the calendar */
+}
+
+.month-navigation span {
+  position: absolute; /* Center the title */
+  left: 50%; /* Move to the center of the container */
+  transform: translateX(-50%); /* Adjust for the title's own width */
+  text-align: center;
+  font-size: 1.2em; /* Adjust font size for the month display */
+  font-weight: bold; /* Make the month text bold */
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content button {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.add-event-button {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.add-event-button button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-event-button button:hover {
+  background-color: #0056b3;
+}
+
+.custom-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+.custom-day span {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.add-event-button-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.add-event-button-container .add-event-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-event-button-container .add-event-button:hover {
+  background-color: #0056b3;
+}
+
+.event-banner {
+  display: block; /* Ensure events are displayed as blocks */
+  margin-bottom: 5px; /* Add spacing between stacked events */
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cal-event{
+  flex: none; /* Prevent flexbox from overriding width and height */
+  height: 50px; /* Set the desired height */
+  width: 100%; /* Set the desired width */
+  padding: 5px;
+  font-size: 12px;
+  margin-bottom: 5px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.event-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.event-details-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.event-details-modal button {
+  margin-top: 10px;
+}
+.event-details-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.event-details-actions button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.event-details-actions button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.event-details-actions button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.event-details-actions button:nth-child(2) {
+  background-color: #dc3545;
+  color: white;
+}
+
+.event-details-actions button:nth-child(2):hover {
+  background-color: #a71d2a;
+}
+
+.event-details-actions button:last-child {
+  background-color: #6c757d;
+  color: white;
+}
+
+.event-details-actions button:last-child:hover {
+  background-color: #5a6268;
+}

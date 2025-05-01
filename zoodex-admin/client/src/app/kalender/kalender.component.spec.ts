@@ -15,7 +15,7 @@ describe('KalenderComponent', () => {
     fixture = TestBed.createComponent(KalenderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }); 
 
   it('should create', () => {
     expect(component).toBeTruthy();

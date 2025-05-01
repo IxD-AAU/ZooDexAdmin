@@ -1,1 +1,161 @@
-<p>kalender works!</p>
+<app-sidebar></app-sidebar>
+<p>Kalender works!</p>
+<div class="calendar-container">
+  <!-- Navigation Controls -->
+  <div class="calendar-navigation">
+    <!-- View Switcher Dropdown -->
+    <div class="view-switcher">
+      <label for="view-select"></label>
+      <select id="view-select" (change)="changeView($event)">
+        <option [value]="'month'" [selected]="view === CalendarView.Month">Month</option>
+        <option [value]="'week'" [selected]="view === CalendarView.Week">Week</option>
+        <option [value]="'day'" [selected]="view === CalendarView.Day">Day</option>
+      </select>
+    </div> 
+
+    <!-- Month Title and Next Button -->
+    <div class="month-navigation">
+      <button class="previous-button" (click)="previousMonth()">Previous</button>
+      <span>{{ getCurrentTitle() }}</span>
+      <button class="next-button" (click)="nextMonth()">Next</button>
+    </div>
+  </div>
+
+  <!-- Calendar View -->
+  <ng-template #eventTitleTemplate let-event="event">
+    <div class="event-banner" [style.backgroundColor]="event.color?.primary">
+      {{ event.title }}
+    </div>
+  </ng-template>
+
+  <mwl-calendar-month-view
+    *ngIf="view === CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [eventTitleTemplate]="eventTitleTemplate"
+    [eventWidth]="'100%'"
+    (eventClicked)="onEventClick($event.event)">
+  </mwl-calendar-month-view>
+</div>
+
+<!-- Custom Day Template -->
+<ng-template #customDayTemplate let-day="day">
+  <div class="custom-day">
+    <span>{{ day.date | date: 'd' }}</span>
+  </div>
+</ng-template>
+
+<!-- Add Event Button -->
+<div class="add-event-button-container">
+  <button class="add-event-button" (click)="openAddEventModal(viewDate)">Add Event</button>
+</div>
+
+<!-- Add Event Modal -->
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-content">
+    <h3>Add Event</h3>
+    <form (submit)="addEvent($event)">
+      <label for="event-title">Title:</label>
+      <input id="event-title" type="text" [(ngModel)]="newEvent.title" name="title" required />
+
+      <label for="event-start-date">Start Date:</label>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          [(ngModel)]="newEvent.startDate"
+          name="startDate"
+          placeholder="DD/MM/YYYY"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <label for="event-start-time">Start Time:</label>
+      <input id="event-start-time" type="time" [(ngModel)]="newEvent.startTime" name="startTime" required />
+
+      <label for="event-end-date">End Date:</label>
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="endPicker" [(ngModel)]="newEvent.endDate" name="endDate" required />
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+      <label for="event-end-time">End Time:</label>
+      <input id="event-end-time" type="time" [(ngModel)]="newEvent.endTime" name="endTime" required />
+
+      <label for="event-description">Description:</label>
+      <textarea id="event-description" [(ngModel)]="newEvent.description" name="description"></textarea>
+
+      <button type="submit">Add Event</button>
+      <button type="button" (click)="closeModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="showEventList" class="event-list">
+  <div *ngFor="let event of events" class="event-item">
+    <span>{{ event.title }} ({{ event.start | date: 'short' }} - {{ event.end | date: 'short' }})</span>
+  </div>
+</div>
+
+<!-- Edit Event Modal -->
+<div *ngIf="isEditModalOpen" class="modal">
+  <div class="modal-content">
+    <h3>Edit Event</h3>
+    <form (submit)="saveEventChanges()">
+      <label for="edit-title">Title:</label>
+      <input
+        id="edit-title"
+        type="text"
+        [(ngModel)]="selectedEvent!.title"
+        name="title"
+        required
+      />
+
+      <label for="edit-start">Start Date & Time:</label>
+      <input
+        id="edit-start"
+        type="datetime-local"
+        [(ngModel)]="selectedEvent!.start"
+        name="start"
+        required
+      />
+
+      <label for="edit-end">End Date & Time:</label>
+      <input
+        id="edit-end"
+        type="datetime-local"
+        [(ngModel)]="selectedEvent!.end"
+        name="end"
+        required
+      />
+
+      <label for="edit-description">Description:</label>
+      <textarea
+        id="edit-description"
+        [(ngModel)]="selectedEvent!.description"
+        name="description"
+      ></textarea>
+
+      <button type="submit">Save Changes</button>
+      <button type="button" (click)="closeEditModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="selectedEvent" class="event-details-modal">
+  <h2>Event Details</h2>
+  <p><strong>Title:</strong> {{ selectedEvent.title }}</p>
+  <p><strong>Start:</strong> {{ selectedEvent.start | date: 'short' }}</p>
+  <p><strong>End:</strong> {{ selectedEvent.end | date: 'short' }}</p>
+  <p><strong>Description:</strong> {{ selectedEvent.description }}</p>
+
+  <div class="event-details-actions">
+    <button (click)="openEditEventModal(selectedEvent)">Edit</button>
+    <button (click)="deleteEvent(selectedEvent)">Delete</button>
+    <button (click)="closeEventDetails()">Close</button>
+  </div>
+</div>
+

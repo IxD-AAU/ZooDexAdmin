@@ -123,6 +123,58 @@ app.post('/api/database/insert', (req, res) => {
     }
 })
 
+app.post('/api/database/delete', (req, res) => {
+    const {ID, DataSet} = req.body;
+    if (String(DataSet)=="Dyr"){
+        try {
+            const query = database.prepare('DELETE FROM Dyr WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Dyr Database entry deleted successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Dyr Database', details: error.message });
+        }
+    }
+    else if (String(DataSet)=="Personale"){
+        try {
+            const query = database.prepare('DELETE FROM Personale WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Personale Database entry deleted successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Personale Database', details: error.message });
+        }
+    }
+    else if (String(DataSet)=="Beskeder"){
+        try {
+            const query = database.prepare('DELETE FROM Beskeder WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Beskeder Database entry deleted successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Beskeder Database' });
+        }
+    }
+    else if (String(DataSet)=="Events"){
+        try {
+            const query = database.prepare('DELETE FROM Events WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Events Database entry deleted successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Events Database' });
+        }
+    }
+    else {
+        res.status(400).send({ error: 'Invalid DataSet' });
+    }
+})
+
+app.post('/api/database/storage', (req, res) => {
+    const {ID, DataSet } = req.body;
+
+})
+
 
 app.use(express.static('<path to your angular app>'));
 app.use(express.json());

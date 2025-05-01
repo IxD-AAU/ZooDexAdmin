@@ -17,6 +17,12 @@ export class DatabaseHandlerService {
   insertDatabase(Data: any, DataSet: String): Observable<any>{
     return this.http.post(`${this.apiUrl}/database/insert`, {Data, DataSet});
   }
+  deleteDatabase(ID: number, DataSet: String): Observable<any> {
+    return this.http.post(`${this.apiUrl}/database/delete`, { ID, DataSet });
+  }
+  StoreDatabse(ID: number, DataSet: String): Observable<any>{
+    return this.http.post(`${this.apiUrl}/database/storage`, { ID, DataSet });
+  }
 
 }
 

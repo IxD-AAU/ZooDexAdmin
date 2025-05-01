@@ -172,7 +172,57 @@ app.post('/api/database/delete', (req, res) => {
 
 app.post('/api/database/storage', (req, res) => {
     const {ID, DataSet } = req.body;
-
+    if (String(DataSet)=="Dyr"){
+        try {
+            const query = database.prepare('INSERT INTO Dyr-STORAGE (Name, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax) SELECT Name, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax FROM Dyr WHERE ID = ?');
+            query.run(ID);
+            query = database.prepare('DELETE FROM Dyr WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Dyr Database entry stored successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Dyr Database', details: error.message });
+        }
+    }
+    else if(String(DataSet)=="Personale"){
+        try {
+            const query = database.prepare('INSERT INTO Personale-STORAGE (Username, Password, FirstName, LastName, Mail, Job) SELECT Username, Password, FirstName, LastName, Mail, Job FROM Personale WHERE ID = ?');
+            query.run(ID);
+            query = database.prepare('DELETE FROM Personale WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Personale Database entry stored successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Personale Database', details: error.message });
+        }
+    }
+    else if(String(DataSet)=="Beskeder"){
+        try {
+            const query = database.prepare('INSERT INTO Beskeder-STORAGE (Title, Category, Sender, Reciever) SELECT Title, Category, Sender, Reciever FROM Beskeder WHERE ID = ?');
+            query.run(ID);
+            query = database.prepare('DELETE FROM Beskeder WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Beskeder Database entry stored successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Beskeder Database' });
+        }
+    }
+    else if(String(DataSet)=="Events"){
+        try {
+            const query = database.prepare('INSERT INTO Events-STORAGE (Name, Dato, StartTime, Info) SELECT Name, Dato, StartTime, Info FROM Events WHERE ID = ?');
+            query.run(ID);
+            query = database.prepare('DELETE FROM Events WHERE ID = ?');
+            query.run(ID);
+            res.status(200).send({ message: 'Events Database entry stored successfully'});
+        }
+        catch (error){
+            res.status(500).send({ error: 'Failed to update Events Database' });
+        }
+    }
+    else {
+        res.status(400).send({ error: 'Invalid DataSet' });
+    }
 })
 
 

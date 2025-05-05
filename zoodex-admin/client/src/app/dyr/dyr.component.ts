@@ -14,7 +14,7 @@ import { DyrInfoComponent } from '../dyr-info/dyr-info.component';
 export class DyrComponent implements OnInit {
 
   isDataReady: boolean = false;
-  public pageText!: any;
+  public dyrPageText!: any;
   public dyrData!: string;
   public animalsInZoo: string[] = [];
 
@@ -27,12 +27,12 @@ export class DyrComponent implements OnInit {
     this.sidebarService.open();
 
     setTimeout(() => {
-      this.pageText = this.dyrGetterService.dyr;
+      this.dyrPageText = this.dyrGetterService.dyr;
       this.isDataReady = true;
-      console.log(this.pageText);
+      console.log(this.dyrPageText);
 
 
-    }, 1000);
+    }, 1500);
   }
 
 

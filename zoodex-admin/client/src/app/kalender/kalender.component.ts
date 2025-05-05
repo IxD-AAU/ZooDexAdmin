@@ -13,7 +13,7 @@ import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
-// Custom date format for day-month-year 
+// Custom date format for day-month-year
 export const MY_DATE_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY', // Format for parsing input
@@ -30,7 +30,7 @@ export const MY_DATE_FORMATS = {
 interface CustomCalendarEvent extends CalendarEvent {
   description?: string; // Add the description property
 }
- 
+
 @Component({
   selector: 'app-kalender',
   standalone: true,
@@ -82,7 +82,7 @@ export class KalenderComponent implements OnInit {
     description: ''
   };
   showEventList = false; // Default to hiding the event list
-  
+
   constructor(public sidebarService: SidebarService) {}
 
   ngOnInit(): void {

@@ -2,23 +2,23 @@
 
 <section *ngIf="isDataReady; else loading">
   <article>
-    <p>Dyr: {{ pageText[animalID].Name }}</p>
-    <p>Type: {{ pageText[animalID].Type }}</p>
-    <p>Beskrivelse: {{ pageText[animalID].Description }}</p>
-    <p>Personlighed: {{pageText[animalID].Personality }}</p>
+    <p>Dyr: {{ dyrPageText[animalID].Name }}</p>
+    <p>Type: {{ dyrPageText[animalID].Type }}</p>
+    <p>Beskrivelse: {{ dyrPageText[animalID].Description }}</p>
+    <p>Personlighed: {{dyrPageText[animalID].Personality }}</p>
     <table>
       <tr>
         <th>Vægt Han</th>
         <th>Vægt Hun</th>
       </tr>
       <tr>
-        <td>{{ pageText[animalID].WeightMaleMin }} - {{ pageText[animalID].WeightMaleMax }}</td>
-        <td>{{ pageText[animalID].WeightFemaleMin }} - {{ pageText[animalID].WeightFemaleMax }}</td>
+        <td>{{ dyrPageText[animalID].WeightMaleMin }} - {{ dyrPageText[animalID].WeightMaleMax }}</td>
+        <td>{{ dyrPageText[animalID].WeightFemaleMin }} - {{ dyrPageText[animalID].WeightFemaleMax }}</td>
       </tr>
     </table>
-    <p>Højde: {{ pageText[animalID].Height }}</p>
-    <p>Hastighed: optil {{ pageText[animalID].Speed }} km/t</p>
-    <p>Unger: {{ pageText[animalID].YoungMin }} - {{ pageText[animalID].YoungMax }}</p>
+    <p>Højde: {{ dyrPageText[animalID].Height }}</p>
+    <p>Hastighed: optil {{ dyrPageText[animalID].Speed }} km/t</p>
+    <p>Unger: {{ dyrPageText[animalID].YoungMin }} - {{ dyrPageText[animalID].YoungMax }}</p>
   </article>
     <button type="button" (click)="reDirectToEdit()">Redigere</button>
 </section>

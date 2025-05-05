@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PersonaleGetterService } from '../personale-getter.service';
 import { CommonModule } from '@angular/common';
 import { stringify } from 'querystring';
+import { DyrGetterService } from '../dyr-getter.service';
 
 @Component({
   selector: 'app-login',
@@ -20,23 +21,29 @@ export class LoginComponent implements OnInit {
   public UserID!: number;
   public PasswordCheck!: any;
   public PasswordHolder!: string;
+  private PasswordCheckLength!: number;
+  public dyrPageText!: any;
 
   constructor(
     private usernameGetterService: UsernameGetterService,
     private router: Router,
-    private readonly personaleGetterService: PersonaleGetterService
+    private readonly personaleGetterService: PersonaleGetterService,
+    private readonly dyrGetterService: DyrGetterService
   ) { }
 
   ngOnInit(): void {
     this.PasswordCheck = this.personaleGetterService.personale;
     console.log(this.PasswordCheck);
+    this.PasswordCheckLength = this.PasswordCheck.length;
+    console.log(this.PasswordCheckLength, 'is the length of the password check array');
+    this.dyrPageText = this.dyrGetterService.dyr;
+    console.log(this.dyrPageText, 'is the dyrPageText');
   }
 
   handleSubmit(){
     console.log(this.Username, 'logged in with', this.Password);
     let i = 0;
-    const length = this.PasswordCheck.length;
-    while (i < length) {
+    while (i < this.PasswordCheckLength) {
       if (this.Username == this.PasswordCheck[i].Username){
         this.UserID = i;
         break;

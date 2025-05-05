@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DyrGetterService } from '../dyr-getter.service';
 import { FormsModule } from '@angular/forms';
+import { DatabaseHandlerService } from '../database-handler.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-dyr-info-edit',
@@ -13,28 +15,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './dyr-info-edit.component.css'
 })
 export class DyrInfoEditComponent implements OnInit {
-  AnimalName: string = '';
-  AnimalType: string = '';
-  AnimalDescription: string = '';
-  AnimalPersonality: string = '';
-  AnimalWeightMaleMin: number = 0;
-  AnimalWeightMaleMax: number = 0;
-  AnimalWeightFemaleMin: number = 0;
-  AnimalWeightFemaleMax: number = 0;
-  AnimalHeight: number = 0;
-  AnimalSpeed: number = 0;
-  AnimalYoungMin: number = 0;
-  AnimalYoungMax: number = 0;
-  AnimalInZoo: string = 'YES';
 
-  public animalID: string = " ";
+  public animalID: number = 0;
   isDataReady: boolean = false;
-  public pageText!: any;
+  public dyrPageText!: any;
 
   constructor(
     public sidebarService: SidebarService,
     private route: ActivatedRoute,
-    public dyrGetterService: DyrGetterService
+    public dyrGetterService: DyrGetterService,
+    public databaseHandlerService: DatabaseHandlerService
   ) { }
 
   ngOnInit(): void {
@@ -44,12 +34,81 @@ export class DyrInfoEditComponent implements OnInit {
       console.log('Animal ID:', this.animalID);
     });
     setTimeout(() => {
-      this.pageText = this.dyrGetterService.dyr;
+      this.dyrPageText = this.dyrGetterService.dyr;
       this.isDataReady = true;
     }, 1000);
   }
   submitForm(): void {
-    //before implementation, add the database handler function
+    console.log(this.dyrPageText[this.animalID], 'is the data to be sent to the database');
+    const dataToSend = this.dyrPageText[this.animalID];
+    const dataSet = "Dyr";
+    this.databaseHandlerService.updateDatabase(this.animalID,dataToSend,dataSet).subscribe({
+      next: (response) => {
+        console.log("Data updated successfully:", response);
+        alert("Data opdateret!");
+      },
+      error: (error) => {
+        console.error("Error updating data:", error);
+        alert("Der skete en fejl under opdateringen af dataene.");
+      }
+    });
   }
+  deleteData(): void {
+    alert("Er du sikker på at du vil slette dyret?");
+    if (confirm("Er du sikker på at du vil slette dyret?")) {
+      const dataSet = "Dyr";
+      this.databaseHandlerService.deleteDatabase(this.animalID, dataSet).subscribe({
+        next: (response) => {
+          console.log("Data deleted successfully:", response);
+          alert("Data slettet!");
+        },
+        error: (error) => {
+          console.error("Error deleting data:", error);
+          alert("Der skete en fejl under sletning af dataene.");
+        }
+      })
+    }
+    else {
+      console.log("Sletning afbrudt");
+    }
+  }
+  moveData(): void {
+    alert("Er du sikker på at du vil flytte dyret til arkivet?");
+    if (confirm("Er du sikker på at du vil flytte dyret til arkivet?")) {
+      const dataSet = "Dyr";
+      this.databaseHandlerService.StoreDatabse(this.animalID, dataSet).subscribe({
+        next: (response) => {
+          console.log("Data moved successfully:", response);
+          alert("Data flyttet til arkivet!");
+        },
+        error: (error) => {
+          console.error("Error moving data:", error);
+          alert("Der skete en fejl under flytning af dataene.");
+        }
+      })
+    }
+    else {
+      console.log("Flytning afbrudt");
+    }
 
+  }
+  retriveData(): void {
+    alert("Er du sikker på at du vil hente dyret fra akrivet?");
+    if (confirm("Er du sikker på at du vil hente dyret fra akrivet?")) {
+      const dataSet = "Dyr";
+      this.databaseHandlerService.RetriveDatabase(this.animalID, dataSet).subscribe({
+        next: (response) => {
+          console.log("Data retrieved successfully:", response);
+          alert("Data hentet fra arkivet!");
+        },
+        error: (error) => {
+          console.error("Error retrieving data:", error);
+          alert("Der skete en fejl under hentning af dataene.");
+        }
+      })
+    }
+    else {
+      console.log("Hentning afbrudt");
+    }
+  }
 }

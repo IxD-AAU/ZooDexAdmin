@@ -4,32 +4,34 @@
   <article>
     <form (ngSubmit)="submitForm()" #myForm="ngForm">
       <label for="Name">Navn: </label>
-      <input type="text" [(ngModel)]='pageText[animalID].Name' id="Name" name="Name" required><br>
+      <input type="text" [(ngModel)]='dyrPageText[animalID].Name' id="Name" name="Name" required><br>
       <label for="Type">Type: </label>
-      <input type="text" [(ngModel)]='pageText[animalID].Type' id="Type" name="Type" required><br>
+      <input type="text" [(ngModel)]='dyrPageText[animalID].Type' id="Type" name="Type" required><br>
       <label for="Description">Beskrivelse: </label>
-      <input type="text" [(ngModel)]='pageText[animalID].Description' id="Description" name="Description" required><br>
+      <input type="text" [(ngModel)]='dyrPageText[animalID].Description' id="Description" name="Description" required><br>
       <label for="Personality">Personlighed: </label>
-      <input type="text" [(ngModel)]='pageText[animalID].Personality' id="Personality" name="Personality" required><br>
+      <input type="text" [(ngModel)]='dyrPageText[animalID].Personality' id="Personality" name="Personality" required><br>
       <label for="WeightMaleMin">Vægt Han Minimun: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].WeightMaleMin' id="WeightMaleMin" name="WeightMaleMin" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].WeightMaleMin' id="WeightMaleMin" name="WeightMaleMin" required><br>
       <label for="WeightMaleMax">Vægt Han Maksimum: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].WeightMaleMax' id="WeightMaleMax" name="WeightMaleMax" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].WeightMaleMax' id="WeightMaleMax" name="WeightMaleMax" required><br>
       <label for="WeightFemaleMin">Vægt Hun Minimun: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].WeightFemaleMin' id="WeightFemaleMin" name="WeightFemaleMin" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].WeightFemaleMin' id="WeightFemaleMin" name="WeightFemaleMin" required><br>
       <label for="WeightFemaleMax">Vægt Hun Maksimum: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].WeightFemaleMax' id="WeightFemaleMax" name="WeightFemaleMax" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].WeightFemaleMax' id="WeightFemaleMax" name="WeightFemaleMax" required><br>
       <label for="Height">Højde: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].Height' id="Height" name="Height" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].Height' id="Height" name="Height" required><br>
       <label for="Speed">Hastighed (km/t): </label>
-      <input type="number" [(ngModel)]='pageText[animalID].Speed' id="Speed" name="Speed" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].Speed' id="Speed" name="Speed" required><br>
       <label for="YoungMin">Unger Minimun: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].YoungMin' id="YoungMin" name="YoungMin" required><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].YoungMin' id="YoungMin" name="YoungMin" required><br>
       <label for="YoungMax">Unger Maksimum: </label>
-      <input type="number" [(ngModel)]='pageText[animalID].YoungMax' id="YoungMax" name="YoungMax" required><br>
-      <input type="hidden" [(ngModel)]='pageText[animalID].In_Zoo' id="In_Zoo" name="In_Zoo" required><br>
-      <input type="submit" id="submitButton" value="Gem"><br>
+      <input type="number" [(ngModel)]='dyrPageText[animalID].YoungMax' id="YoungMax" name="YoungMax" required><br>
+      <input type="hidden" [(ngModel)]='dyrPageText[animalID].In_Zoo' id="In_Zoo" name="In_Zoo" required><br>
+      <input type="submit" id="submitButton" value="Gem Ændringer"><br>
     </form>
+    <button type="button" (click)="moveData()">Flyt til Arkiv</button><br>
+    <button type="button" (click)="deleteData()">Slet fra Database</button>
 
   </article>
 </section>

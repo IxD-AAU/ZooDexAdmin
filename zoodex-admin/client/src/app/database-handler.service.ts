@@ -7,21 +7,53 @@ import { Observable } from 'rxjs';
 })
 export class DatabaseHandlerService {
   private apiUrl = 'http://localhost:3000/api';
-
+  public body: any;
 
   constructor(private http: HttpClient) {}
 
-  updateDatabase(ID: number, Data: any, DataSet: String): Observable<any> {
-    return this.http.post(`${this.apiUrl}/database/update`, { ID, Data, DataSet});
+
+  updateDatabase(id: number, data: any, dataSet: String): Observable<any> {
+    this.body = {
+      ID: id+1,
+      Data: data,
+      DataSet: dataSet
+    };
+    return this.http.post(`${this.apiUrl}/database/update`, this.body);
   }
-  insertDatabase(Data: any, DataSet: String): Observable<any>{
-    return this.http.post(`${this.apiUrl}/database/insert`, {Data, DataSet});
+  insertDatabase(data: any, dataSet: String): Observable<any>{
+
+    this.body = {
+      Data: data,
+      DataSet: dataSet
+    };
+
+    return this.http.post(`${this.apiUrl}/database/insert`, this.body);
   }
   deleteDatabase(ID: number, DataSet: String): Observable<any> {
-    return this.http.post(`${this.apiUrl}/database/delete`, { ID, DataSet });
+
+    this.body = {
+      ID: ID+1,
+      DataSet: DataSet
+    }
+
+    return this.http.post(`${this.apiUrl}/database/delete`, this.body);
   }
   StoreDatabse(ID: number, DataSet: String): Observable<any>{
-    return this.http.post(`${this.apiUrl}/database/storage`, { ID, DataSet });
+
+    this.body = {
+      ID: ID+1,
+      DataSet: DataSet
+    };
+
+    return this.http.post(`${this.apiUrl}/database/store`, this.body);
+  }
+  RetriveDatabase(ID: number, DataSet: String): Observable<any>{
+    this.body = {
+      ID: ID+1,
+      DataSet: DataSet
+    };
+
+    return this.http.post(`${this.apiUrl}/database/retrieve`, this.body);
   }
 
 }

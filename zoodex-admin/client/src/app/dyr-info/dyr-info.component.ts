@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class DyrInfoComponent implements OnInit {
   public animalID: string = " ";
   isDataReady: boolean = false;
-  public pageText!: any;
+  public dyrPageText!: any;
   public animalsInZoo: string[] = [];
 
   constructor(
@@ -33,7 +33,7 @@ export class DyrInfoComponent implements OnInit {
       console.log('Animal ID:', this.animalID);
   });
     setTimeout(() => {
-      this.pageText = this.dyrGetterService.dyr;
+      this.dyrPageText = this.dyrGetterService.dyr;
       this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
       this.isDataReady = true;
 })

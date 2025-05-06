@@ -3,6 +3,8 @@
 <section *ngIf="isDataReady; else loading">
   <article>
     <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <label for="DataSet">Hvor befinder dyret sig i systemet. Dyret er i:</label>
+      <input type="text" [(ngModel)]='dyrPageText[animalID].DataSet' id="DataSet" name="DataSet" readonly><br>
       <label for="Name">Navn: </label>
       <input type="text" [(ngModel)]='dyrPageText[animalID].Name' id="Name" name="Name" required><br>
       <label for="Type">Type: </label>
@@ -27,11 +29,12 @@
       <input type="number" [(ngModel)]='dyrPageText[animalID].YoungMin' id="YoungMin" name="YoungMin" required><br>
       <label for="YoungMax">Unger Maksimum: </label>
       <input type="number" [(ngModel)]='dyrPageText[animalID].YoungMax' id="YoungMax" name="YoungMax" required><br>
-      <input type="hidden" [(ngModel)]='dyrPageText[animalID].In_Zoo' id="In_Zoo" name="In_Zoo" required><br>
       <input type="submit" id="submitButton" value="Gem Ændringer"><br>
     </form>
+    <button type="button" (click)="deleteData()">Slet fra Database</button><br>
     <button type="button" (click)="moveData()">Flyt til Arkiv</button><br>
-    <button type="button" (click)="deleteData()">Slet fra Database</button>
+    <button type="button" (click)="retriveData()">Hent fra Arkiv</button><br>
+    <button type="button" (click)="reDirectToInfo()">Færdig</button><br>
 
   </article>
 </section>

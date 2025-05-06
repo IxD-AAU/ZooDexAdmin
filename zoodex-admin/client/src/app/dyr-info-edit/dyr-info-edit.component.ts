@@ -7,6 +7,7 @@ import { DyrGetterService } from '../dyr-getter.service';
 import { FormsModule } from '@angular/forms';
 import { DatabaseHandlerService } from '../database-handler.service';
 import { response } from 'express';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dyr-info-edit',
@@ -21,6 +22,7 @@ export class DyrInfoEditComponent implements OnInit {
   public dyrPageText!: any;
 
   constructor(
+    private router: Router,
     public sidebarService: SidebarService,
     private route: ActivatedRoute,
     public dyrGetterService: DyrGetterService,
@@ -110,5 +112,8 @@ export class DyrInfoEditComponent implements OnInit {
     else {
       console.log("Hentning afbrudt");
     }
+  }
+  reDirectToInfo(): void {
+    this.router.navigate(['/Dyr-Info'], { queryParams: { id: this.animalID } });
   }
 }

@@ -10,3 +10,17 @@ p{
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+table{
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: #EEEEEE;
+}
+
+td, th {
+  border: 1px solid #777777;
+  text-align: left;
+  padding: 8px;
+}

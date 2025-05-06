@@ -12,7 +12,7 @@
     <article>
         <li>Event 2 description</li>
       <p></p>
-    </article> 
+    </article>
     <article>
         <li>Event 3 description</li>
       <p></p>
@@ -34,7 +34,7 @@
       <article>
         <li>Event 2 description</li>
         <p></p>
-      </article> 
+      </article>
       <article>
         <li>Event 3 description</li>
         <p></p>
@@ -49,23 +49,15 @@
   <div class="side-by-side">
     <div class="scrollable-container">
         <!-- Indhold --><section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;">
-      <article>
-        <h1>Events for i dag</h1>
-        <li>Event 1 description</li>
-        <p></p>
-      </article>
-      <article>
-        <li>Event 2 description</li>
-        <p></p>
-      </article> 
-      <article>
-        <li>Event 3 description</li>
-        <p></p>
-      </article>
-      <article>
-        <li>Event 4 description</li>
-        <p></p>
-      </article>
+        <h1>Dagens Aktiviteter</h1>
+        <ul>
+          <article *ngFor="let event of eventsPageTextTimeOrdered; let i = index">
+            <li>
+              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextTimeOrdered[i].ID}">{{ eventsPageTextTimeOrdered[i].Name }} kl: {{ eventsPageTextTimeOrdered[i].StartTime }}</a>
+            </li><br>
+
+          </article>
+        </ul>
     </section>
     </div>
     <div class="scrollable-container">
@@ -79,7 +71,7 @@
         <article>
           <li>Event 2 description</li>
           <p></p>
-        </article> 
+        </article>
         <article>
           <li>Event 3 description</li>
           <p></p>
@@ -90,7 +82,7 @@
         </article>
       </section>
     </div>
-   <div> 
+   <div>
 </div>
 
 <!--use this one if the other one does not fufill the our wish's--><!--den øverste event box-->
@@ -104,7 +96,7 @@
       <article>
         <li>Event 2 description</li>
         <p></p>
-      </article> 
+      </article>
       <article>
         <li>Event 3 description</li>
         <p></p>
@@ -117,7 +109,7 @@
   </div>-->
 
   <!--den nederste event box-->
-  
+
   <!--<div>
     <section>
       <article>
@@ -128,7 +120,7 @@
       <article>
         <li>Event 2 description</li>
         <p></p>
-      </article> 
+      </article>
       <article>
         <li>Event 3 description</li>
         <p></p>
@@ -152,7 +144,7 @@
         <p></p>
       </article>
     </section>
-  
+
     <section class="two-column-layout">
       <article>
         <h1>Kommende Events</h1>

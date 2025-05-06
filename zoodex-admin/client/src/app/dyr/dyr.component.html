@@ -2,13 +2,28 @@
 
 <section *ngIf="isDataReady; else loading">
   <article>
-    <ul>
+    <table>
+      <tr>
+        <th>Dyr:</th>
+        <th>Database hvor dyret er:</th>
+      </tr>
+      <tr *ngFor="let animals of dyrPageText; let i = index">
+        <td>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i}"> {{ dyrPageText[i].Name }} </a>
+        </td>
+        <td>{{ dyrPageText[i].DataSet }}</td>
+      </tr>
+    </table>
+
+
+
+    <!-- <ul>
       <li *ngFor="let animals of dyrPageText; let i = index">
         <p>
           <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i}"> {{ dyrPageText[i].Name }} </a>
         </p>
       </li>
-    </ul>
+    </ul> -->
   </article>
 </section>
 

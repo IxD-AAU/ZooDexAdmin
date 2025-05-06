@@ -114,6 +114,7 @@ export class DyrInfoEditComponent implements OnInit {
     }
   }
   reDirectToInfo(): void {
-    this.router.navigate(['/Dyr-Info'], { queryParams: { id: this.animalID } });
+    console.log("reDirecting to info page");
+    this.router.navigate(['/Dyr_Info'], { queryParams: { id: this.animalID } });
   }
 }

@@ -1,1 +1,14 @@
 <app-sidebar></app-sidebar>
+
+<section *ngIF="isDataReady; else loading">
+  <article>
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <label></label>
+      <input>
+    </form>
+  </article>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>

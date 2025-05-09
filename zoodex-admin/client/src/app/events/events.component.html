@@ -51,9 +51,9 @@
         <!-- Indhold --><section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;">
         <h1>Dagens Aktiviteter</h1>
         <ul>
-          <article *ngFor="let event of eventsPageTextTimeOrdered; let i = index">
+          <article *ngFor="let event of eventsPageTextTodayEventsOrdered; let i = index">
             <li>
-              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextTimeOrdered[i].ID}">{{ eventsPageTextTimeOrdered[i].Name }} kl: {{ eventsPageTextTimeOrdered[i].StartTime }}</a>
+              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextTodayEventsOrdered[i].ID}">{{ eventsPageTextTodayEventsOrdered[i].Name }} kl: {{ eventsPageTextTodayEventsOrdered[i].StartTime }}</a>
             </li><br>
 
           </article>
@@ -63,23 +63,15 @@
     <div class="scrollable-container">
       <!-- Indhold til anden container -->
       <section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;">
-        <article>
-          <h1>Kommende events</h1>
-          <li>Event 1 description</li>
-          <p></p>
-        </article>
-        <article>
-          <li>Event 2 description</li>
-          <p></p>
-        </article>
-        <article>
-          <li>Event 3 description</li>
-          <p></p>
-        </article>
-        <article>
-          <li>Event 4 description</li>
-          <p></p>
-        </article>
+        <h1>Opkommende Aktiviteter</h1>
+        <ul>
+          <article *ngFor="let event of eventsPageTextUpcomingEventsOrdered; let i = index">
+            <li>
+              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextUpcomingEventsOrdered[i].ID}">{{ eventsPageTextUpcomingEventsOrdered[i].Name }} Dato: {{eventsPageTextUpcomingEventsOrdered[i].Dato}}</a>
+            </li><br>
+
+          </article>
+        </ul>
       </section>
     </div>
    <div>

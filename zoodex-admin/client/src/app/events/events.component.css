@@ -3,7 +3,7 @@
 h1 {
     font-size: 32px; /* Større end h2 */
   }
-  
+
   h2 {
     font-size: 24px;
   }
@@ -22,28 +22,28 @@ h1 {
   gap: 20px; /* Afstand mellem kolonner */
   margin-left: 300px; /* Giver plads til sidebaren */
 }
-.scrollable-container {
-    width: 350px;
-    height: 200px;
+/* .scrollable-container {
+    width: 450px;
+    height: 100%;
     touch-action: pan-up;
-    overflow-y: auto; 
+    overflow-y: auto;
     overflow-x: hidden;
     background-color: #f0f0f0;
     padding-left: 10px;
     padding-top: 20px;
     padding-right: 0;
     padding-bottom: 40%;
-    position: absolut; /* Placeres relativt til .content-wrapper */
+    position: absolut;  Placeres relativt til .content-wrapper
     top: 20px;
-    left: 0; /* Starter fra venstre kant af .content-wrapper */
+    left: 0; Starter fra venstre kant af .content-wrapper
     text-align: left;
-}
+} */
 
 .scrollable-container {
-  width: 350px;
-  height: 200px;
+  width: 450px;
+  height: 350px;
   touch-action: pan-up;
-  overflow-y: auto; 
+  overflow-y: auto;
   overflow-x: hidden;
   background-color: #f0f0f0;
   padding-left: 10px;
@@ -59,7 +59,7 @@ h1 {
 /* Container for flexboxes the OG one */
 /*section {
     padding-left: 25%;
-    
+
   }
 
  /*use this one too*/
@@ -67,7 +67,7 @@ h1 {
     width: 350px;
     height: 10px; /*Juster højden som ønsket */
     /*touch-action: pan-up;
-    overflow-y: auto; 
+    overflow-y: auto;
     overflow-x: hidden; /* Skjul vandret rullefelt */
     /*background-color: #f0f0f0;
     padding-left: 10px; /* Fjern ekstra afstand til venstre */

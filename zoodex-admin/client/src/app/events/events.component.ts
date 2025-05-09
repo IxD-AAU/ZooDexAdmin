@@ -15,8 +15,13 @@ import { ActivatedRoute } from '@angular/router';
 export class EventsComponent {
 
   public eventsPageText!: any;
-  public eventsPageTextTimeOrdered!: any;
   public eventID: string = " ";
+  public currentTime: string = " ";
+  public eventsPageTextTodayEvents!: any;
+  public eventsPageTextUpcomingEvents!: any;
+  public eventsPageTextTodayEventsOrdered!: any;
+  public eventsPageTextUpcomingEventsOrdered!: any;
+
 
   constructor(
     public sidebarService: SidebarService,
@@ -40,22 +45,93 @@ export class EventsComponent {
         this.eventGetterService.events = data;
       })
       this.eventsPageText = this.eventGetterService.events;
+      this.currentTime = this.getCurrentDate();
+      this.eventsPageTextTodayEvents = this.todaysList(this.currentTime,this.eventsPageText);
+      this.eventsPageTextUpcomingEvents = this.upcomingList(this.currentTime,this.eventsPageText);
+      this.eventsPageTextTodayEventsOrdered = this.orderByTime(this.eventsPageTextTodayEvents);
+      this.eventsPageTextUpcomingEventsOrdered = this.orderByDate(this.eventsPageTextUpcomingEvents);
 
-      this.orderByTime();
-
-      console.log(this.eventsPageText);
-      console.log(this.eventsPageTextTimeOrdered);
+      // this.eventsPageText = this.eventGetterService.events;
+      // this.eventsPageTextTimeOrdered = this.orderByTime(this.eventsPageText);
+      // console.log(this.eventsPageText,"OG event list");
+      // this.currentTime = this.getCurrentDate();
+      // console.log(this.eventsPageTextTimeOrdered,"time ordered events, ALL");
+      // console.log(this.currentTime,"this is the current date");
+      // this.eventsPageTextTodayEvents = this.todaysList();
+      // console.log(this.eventsPageTextTodayEvents, "these are the events happening today");
     }, 1000);
   }
-  orderByTime() {
-    if (this.eventsPageText && Array.isArray(this.eventsPageText)){
-      this.eventsPageTextTimeOrdered = [...this.eventsPageText].sort((a: any, b: any) =>{
+
+  orderByTime(StartArray:any): any {
+    if (StartArray && Array.isArray(StartArray)){
+      return [...StartArray].sort((a: any, b: any) =>{
         return parseInt(a.StartTime, 10) - parseInt(b.StartTime, 10);
       });
     } else {
-      console.error("Events date is not available or not an array.");
+      console.error("Events date for today is not available or not an array.");
     }
   }
+
+  orderByDate(StartArray:any): any {
+    if (StartArray && Array.isArray(StartArray)){
+      return [...StartArray].sort((a: any, b: any) => {
+        const dateA = new Date(a.Date);
+        const dateB = new Date(b.Date);
+        console.log(dateA, "this is date A.", dateB, "this is date B.");
+        return dateA.getTime() - dateB.getTime();
+      });
+    } else {
+      console.error("Events date for upcoming is not available or not an array");
+    }
+  }
+
+  getCurrentDate(){
+    const currentDate = new Date();
+    const day = currentDate.getDate().toString().padStart(2,'0');
+    const month = (currentDate.getMonth()+1).toString().padStart(2,'0');
+    return `${day}-${month}`;
+  }
+
+  todaysList(currentDate:string, eventList:any){
+    const L = this.eventsPageText.length;
+    const outputArray: any[] = [];
+    let n = 0;
+    while (n < L ){
+      if (String(eventList[n].Dato)==currentDate){
+        outputArray.push(eventList[n]);
+        n++;
+      }
+      else{
+        n++;
+      }
+    }
+    return outputArray;
+  }
+  upcomingList(currentDate:string, eventList:any){
+    const L = this.eventsPageText.length;
+    const outputArray: any[] = [];
+    const [Day, Month] = currentDate.split('-');
+    let n = 0;
+    while (n < L){
+      if (String(eventList[n].Dato)!=currentDate){
+        let [eventDay, eventMonth] = (eventList[n].Dato).split('-');
+        if (eventMonth >= Month && eventDay > Day){
+          outputArray.push(eventList[n]);
+          n++;
+        }
+        else{
+          n++;
+        }
+      }
+      else{
+        n++;
+      }
+    }
+    return outputArray;
+  }
+
+
+
 
 }
 

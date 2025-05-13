@@ -14,25 +14,28 @@ export class DatabaseHandlerService {
 
   updateDatabase(id: number, data: any, dataSet: String): Observable<any> {
     this.body = {
-      ID: id+1,
+      ID: Number(id)+1,
       Data: data,
       DataSet: dataSet
     };
+    console.log("ID:", this.body.ID);
+    console.log("Data:", this.body.Data);
+    console.log("DataSet:", this.body.dataSet);
     return this.http.post(`${this.apiUrl}/database/update`, this.body);
   }
   insertDatabase(data: any, dataSet: String): Observable<any>{
-
     this.body = {
       Data: data,
       DataSet: dataSet
     };
+    console.log("Data:", this.body);
 
     return this.http.post(`${this.apiUrl}/database/insert`, this.body);
   }
   deleteDatabase(ID: number, DataSet: String): Observable<any> {
 
     this.body = {
-      ID: ID+1,
+      ID: Number(ID)+1,
       DataSet: DataSet
     }
 
@@ -41,7 +44,7 @@ export class DatabaseHandlerService {
   StoreDatabse(ID: number, DataSet: String): Observable<any>{
 
     this.body = {
-      ID: ID+1,
+      ID: Number(ID)+1,
       DataSet: DataSet
     };
 
@@ -49,7 +52,7 @@ export class DatabaseHandlerService {
   }
   RetriveDatabase(ID: number, DataSet: String): Observable<any>{
     this.body = {
-      ID: ID+1,
+      ID: Number(ID)+1,
       DataSet: DataSet
     };
 

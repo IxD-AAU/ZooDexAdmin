@@ -113,10 +113,11 @@ app.post('/api/database/insert', (req, res) => {
             res.status(500).send({ error: 'Failed to update Beskeder Database' });
         }
     }
-    else if (String(req.body.DataSet)=="Events"){
+    else if (req.body.DataSet=="Events"){
+        console.log("RUNNING INSERT FOR EVENT");
         try {
             const query = database.prepare('INSERT INTO Events (Name, Dato, StartTime, Info, DataSet) VALUES (?, ?, ?, ?, ?)')
-            query.run(req.body.Data.Name,req.body.Data.Dato,req.body.Data.StartTime,req.body.Data.Info, req.body.DataSet);
+            query.run(req.body.Data.Name, req.body.Data.Dato, req.body.Data.StartTime, req.body.Data.Info, req.body.DataSet);
             res.status(200).send({ message: 'Events Database updated successfully'});
         }
         catch (error){

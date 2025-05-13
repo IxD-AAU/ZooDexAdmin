@@ -51,7 +51,7 @@ export class DyrInfoEditComponent implements OnInit {
       },
       error: (error) => {
         console.error("Error updating data:", error);
-        alert("Der skete en fejl under opdateringen af dataene.");
+        alert("Der skete en fejl under opdateringen af data.");
       }
     });
   }

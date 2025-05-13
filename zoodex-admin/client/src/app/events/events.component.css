@@ -1,4 +1,7 @@
+.New_Aktivit {
+  padding-top: 2%;
 
+}
 
 h1 {
     font-size: 32px; /* Større end h2 */
@@ -16,6 +19,8 @@ h1 {
     margin-left: 300px; /* Giver plads til sidebaren */
     position: relative; /* Sørger for, at indholdet placeres korrekt */
 }
+
+
 .side-by-side {
   display: grid;
   grid-template-columns: 1fr 1fr; /* To kolonner med lige bredde */
@@ -50,10 +55,18 @@ h1 {
   padding-top: 20px;
   padding-right: 0;
   padding-bottom: 40%;
-  position: absolut; /* Placeres relativt til .content-wrapper */
+  position: relative; /* Placeres relativt til .content-wrapper */
   top: 20px;
   left: 0; /* Starter fra venstre kant af .content-wrapper */
   text-align: left;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  z-index: 10;
+  padding: 10px;
 }
 
 /* Container for flexboxes the OG one */

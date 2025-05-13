@@ -13,6 +13,7 @@ import { DyrInfoComponent } from './dyr-info/dyr-info.component';
 import { NgModule } from '@angular/core';
 import { DyrInfoEditComponent } from './dyr-info-edit/dyr-info-edit.component';
 import { EventsInfoComponent } from './events-info/events-info.component';
+import { EventsCreateComponent } from './events-create/events-create.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -26,7 +27,8 @@ export const routes: Routes = [
   { path: 'Profile', component: ProfileComponent},
   { path: 'Dyr_Info', component: DyrInfoComponent},
   { path: 'Dyr-Info-Edit', component: DyrInfoEditComponent},
-  { path: 'Events-Info', component: EventsInfoComponent}
+  { path: 'Events-Info', component: EventsInfoComponent},
+  { path: 'Events-Create', component: EventsCreateComponent}
 ];
 
 @NgModule({

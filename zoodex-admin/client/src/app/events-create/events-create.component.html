@@ -1,0 +1,17 @@
+<app-sidebar></app-sidebar>
+
+<section>
+  <article>
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <label for="Name">Aktivitetens Navn: </label>
+      <input type="text" name="Name" id="Name" placeholder="Dyre Fodring" [(ngModel)]="newEvent.Name"><br>
+      <label for="Dato">Aktivitetens Dato: </label>
+      <input type="text" [(ngModel)]="newEvent.Dato" placeholder="14-05" name="Dato" id="Dato"><br>
+      <label for="StartTime">Aktivitetens start tid: </label>
+      <input type="text" title="Inkludere ikke : imellem time of minutter" [(ngModel)]="newEvent.StartTime" name="StartTime" id="StartTime" placeholder="1130"><br>
+      <label for="description">Aktivitetens Formål: </label>
+      <input type="text" name="info" id="info" [(ngModel)]="newEvent.Info"><br>
+      <input type="submit" value="Opret">
+    </form>
+  </article>
+</section>

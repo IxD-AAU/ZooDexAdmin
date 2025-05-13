@@ -46,9 +46,11 @@ export class EventsComponent {
       })
       this.eventsPageText = this.eventGetterService.events;
       this.currentTime = this.getCurrentDate();
-      this.eventsPageTextTodayEvents = this.todaysList(this.currentTime,this.eventsPageText);
-      this.eventsPageTextUpcomingEvents = this.upcomingList(this.currentTime,this.eventsPageText);
+      this.eventsPageTextTodayEvents = this.todaysList(this.currentTime, this.eventsPageText);
+
+      this.eventsPageTextUpcomingEvents = this.upcomingList(this.currentTime, this.eventsPageText);
       this.eventsPageTextTodayEventsOrdered = this.orderByTime(this.eventsPageTextTodayEvents);
+
       this.eventsPageTextUpcomingEventsOrdered = this.orderByDate(this.eventsPageTextUpcomingEvents);
 
       // this.eventsPageText = this.eventGetterService.events;
@@ -107,30 +109,34 @@ export class EventsComponent {
     }
     return outputArray;
   }
+
+  getDayOfYear(dataString: string): number{
+    const [day, month] = dataString.split('-').map(Number)
+    const date = new Date(new Date().getFullYear(), month- 1, day);
+    const startOfYear = new Date(date.getFullYear(),0,0);
+    const diff = date.getTime() - startOfYear.getTime();
+    const oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay);
+  }
+
   upcomingList(currentDate:string, eventList:any){
-    const L = this.eventsPageText.length;
+    const L = eventList.length;
     const outputArray: any[] = [];
-    const [Day, Month] = currentDate.split('-');
+    const currentDayOfYear = this.getDayOfYear(currentDate);
     let n = 0;
     while (n < L){
-      if (String(eventList[n].Dato)!=currentDate){
-        let [eventDay, eventMonth] = (eventList[n].Dato).split('-');
-        if (eventMonth >= Month && eventDay > Day){
-          outputArray.push(eventList[n]);
-          n++;
-        }
-        else{
-          n++;
-        }
+      const eventDayOfYear = this.getDayOfYear(eventList[n].Dato);
+      if ( eventDayOfYear >= currentDayOfYear) {
+        outputArray.push(eventList[n]);
       }
-      else{
-        n++;
-      }
+      n++
     }
     return outputArray;
   }
 
-
+  reDirectToCreateNewEvent(): void{
+    this.router.navigate(['/Events-Create']);
+  }
 
 
 }

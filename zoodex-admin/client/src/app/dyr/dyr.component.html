@@ -5,14 +5,17 @@
     <table>
       <tr>
         <th>Dyr:</th>
-        <th>Database hvor dyret er:</th>
+        <th>Dyr i Arkiv:</th>
       </tr>
       <tr *ngFor="let animals of dyrPageText; let i = index">
         <td>
-          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i}"> {{ dyrPageText[i].Name }} </a>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i, DataSet: dyrPageText[i].DataSet}"> {{ dyrPageText[i].Name }} </a>
         </td>
-        <td>{{ dyrPageText[i].DataSet }}</td>
+        <td>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{id: i, DataSet: dyrArkiv[i].DataSet}"> {{ dyrArkiv[i].Name }} </a>
+        </td>
       </tr>
+
     </table>
 
 

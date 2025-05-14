@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
 
 <section *ngIf="isDataReady; else loading">
-  <article>
+  <article *ngIf="isDyrData; else DyrArkiv">
     <form (ngSubmit)="submitForm()" #myForm="ngForm">
       <label for="DataSet">Hvor befinder dyret sig i systemet. Dyret er i:</label>
       <input type="text" [(ngModel)]='dyrPageText[animalID].DataSet' id="DataSet" name="DataSet" readonly><br>
@@ -31,13 +31,46 @@
       <input type="number" [(ngModel)]='dyrPageText[animalID].YoungMax' id="YoungMax" name="YoungMax" required><br>
       <input type="submit" id="submitButton" value="Gem Ændringer"><br>
     </form>
+    </article>
     <button type="button" (click)="deleteData()">Slet fra Database</button><br>
     <button type="button" (click)="moveData()">Flyt til Arkiv</button><br>
     <button type="button" (click)="retriveData()">Hent fra Arkiv</button><br>
     <button type="button" (click)="reDirectToInfo()">Færdig</button><br>
-
-  </article>
 </section>
+
+<ng-template #DyrArkiv>
+  <form (ngSubmit)="submitForm()" #myForm="ngForm">
+    <label for="DataSet">Hvor befinder dyret sig i systemet. Dyret er i: </label>
+    <input type="text" [(ngModel)]='dyrArkivPageText[animalID].DataSet' id="DataSet" name = "DataSet" readonly><br>
+    <label for=""Name>Nanv: </label>
+    <input type="text" [(ngModel)]='dyrArkivPageText[animalID].Name' id="Name" name="Name" required><br>
+    <label for="Type">Type: </label>
+    <input type="text" [(ngModel)]='dyrArkivPageText[animalID].Type' id="Type" name="Type" required><br>
+    <label for="Description">Beskrivelse: </label>
+    <input type="text" [(ngModel)]='dyrArkivPageText[animalID].Description' id="Description" name="Description" required><br>
+    <label for="Personality">Personlighed: </label>
+    <input type="text" [(ngModel)]='dyrArkivPageText[animalID].Personality' id="Personality" name="Personality" required><br>
+    <label for="WeightMaleMin">Vægt Han Minimun: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].WeightMaleMin' id="WeightMaleMin" name="WeightMaleMin" required><br>
+    <label for="WeightMaleMax">Vægt Han Maksimum: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].WeightMaleMax' id="WeightMaleMax" name="WeightMaleMax" required><br>
+    <label for="WeightFemaleMin">Vægt Hun Minimun: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].WeightFemaleMin' id="WeightFemaleMin" Name="WeightFemaleMin" required><br>
+    <label for="WeightFemaleMax">Vægt Hun Maksimum: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].WeightFemaleMax' id="WeightFemaleMax" name="WeightFemaleMax" required><br>
+    <label for="Height">Højde: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].Height' id="Height" name="Height"><br>
+    <label for="Speed">Hastighed (km/t): </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].Speed' id="Speed" name="Speed" required><br>
+    <label for="YoungMin">Uunger Minimun: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].YoungMin' id="YoungMin" name="YoungMin" required><br>
+    <label for="YoungMax">Unger Maksimum: </label>
+    <input type="number" [(ngModel)]='dyrArkivPageText[animalID].YoungMax' id="YoungMax" name="YoungMax" required><br>
+    <input type="submit" id="submitButton" value="Gem Ændringer"><br>
+  </form>
+</ng-template>
+
+
 
 <ng-template #loading>
   <h2>Loading Data</h2>

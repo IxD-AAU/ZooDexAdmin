@@ -17,6 +17,9 @@ export class DyrInfoComponent implements OnInit {
   isDataReady: boolean = false;
   public dyrPageText!: any;
   public animalsInZoo: string[] = [];
+  public dataSet: string = " ";
+  isDyrDataSet: boolean = false;
+  public dyrArkivPageText!: any;
 
   constructor(
     private router: Router,
@@ -31,15 +34,27 @@ export class DyrInfoComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.animalID = params['id'];
       console.log('Animal ID:', this.animalID);
+      this.dataSet = params['DataSet'];
+      console.log('DataSet: ', this.dataSet);
   });
     setTimeout(() => {
       this.dyrPageText = this.dyrGetterService.dyr;
+      this.dyrArkivPageText = this.dyrGetterService.dyr_archive;
       this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
       this.isDataReady = true;
 })
 }
   reDirectToEdit():void {
-    this.router.navigate(['/Dyr-Info-Edit'], { queryParams: { id: this.animalID } });
+    this.router.navigate(['/Dyr-Info-Edit'], { queryParams: { id: this.animalID, DataSet: this.dataSet } });
+  }
+
+  dataSetLoader(): void{
+    if (this.dataSet == "Dyr"){
+      this.isDyrDataSet = true;
+    }
+    else {
+      this.isDyrDataSet = false;
+    }
   }
 
 }

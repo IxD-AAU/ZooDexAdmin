@@ -51,7 +51,8 @@
 </div>
   <div class="side-by-side">
     <div class="scrollable-container">
-        <!-- Indhold --><section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;">
+        <!-- Indhold<section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;"> -->
+          <section>
         <h1 class="sticky-header">Dagens Aktiviteter</h1>
         <ul>
           <article *ngFor="let event of eventsPageTextTodayEventsOrdered; let i = index">
@@ -65,8 +66,9 @@
     </div>
     <div class="scrollable-container">
       <!-- Indhold til anden container -->
-      <section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;">
-        <h1>Opkommende Aktiviteter</h1>
+      <!-- <section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;"> -->
+        <section>
+        <h1 class="sticky-header">Opkommende Aktiviteter</h1>
         <ul>
           <article *ngFor="let event of eventsPageTextUpcomingEventsOrdered; let i = index">
             <li>

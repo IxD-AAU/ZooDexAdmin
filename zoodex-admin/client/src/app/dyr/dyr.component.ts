@@ -16,6 +16,7 @@ export class DyrComponent implements OnInit {
   isDataReady: boolean = false;
   public dyrPageText!: any;
   public dyrData!: string;
+  public dyrArkiv!: any;
   public animalsInZoo: string[] = [];
 
   constructor(
@@ -28,8 +29,10 @@ export class DyrComponent implements OnInit {
 
     setTimeout(() => {
       this.dyrPageText = this.dyrGetterService.dyr;
+      this.dyrArkiv = this.dyrGetterService.dyr_archive;
       this.isDataReady = true;
       console.log(this.dyrPageText);
+      console.log(this.dyrArkiv);
 
 
     }, 1500);

@@ -20,6 +20,9 @@ export class DyrInfoEditComponent implements OnInit {
   public animalID: number = 0;
   isDataReady: boolean = false;
   public dyrPageText!: any;
+  public dyrArkivPageText!: any;
+  public DataSet: string = " ";
+  isDyrData: boolean = false;
 
   constructor(
     private router: Router,
@@ -34,26 +37,49 @@ export class DyrInfoEditComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.animalID = params['id'];
       console.log('Animal ID:', this.animalID);
+      this.DataSet = params['DataSet'];
     });
     setTimeout(() => {
       this.dyrPageText = this.dyrGetterService.dyr;
+      this.dyrArkivPageText = this.dyrGetterService.dyr_archive;
+      if(this.DataSet == "Dyr"){
+        this.isDyrData = true;
+      }
+      else {
+        this.isDyrData = false;
+      }
       this.isDataReady = true;
     }, 1000);
   }
   submitForm(): void {
     console.log(this.dyrPageText[this.animalID], 'is the data to be sent to the database');
-    const dataToSend = this.dyrPageText[this.animalID];
-    const dataSet = "Dyr";
-    this.databaseHandlerService.updateDatabase(this.animalID,dataToSend,dataSet).subscribe({
-      next: (response) => {
-        console.log("Data updated successfully:", response);
-        alert("Data opdateret!");
-      },
-      error: (error) => {
-        console.error("Error updating data:", error);
-        alert("Der skete en fejl under opdateringen af data.");
-      }
-    });
+    if(this.DataSet=="Dyr"){
+      const dataToSend = this.dyrPageText[this.animalID];
+      const dataSet = this.DataSet;
+      this.databaseHandlerService.updateDatabase(this.animalID,dataToSend,dataSet).subscribe({
+        next: (response) => {
+          console.log("Data updated successfully:", response);
+          alert("Data opdateret!");
+        },
+        error: (error) => {
+          console.error("Error updating data:", error);
+          alert("Der skete en fejl under opdateringen af data.");
+        }
+      });
+    }
+    else if(this.DataSet == "Dyr-STORAGE") {
+      const dataToSend = this.dyrArkivPageText[this.animalID];
+      this.databaseHandlerService.updateDatabase(this.animalID,dataToSend,this.DataSet).subscribe({
+        next: (response) => {
+          console.log("Data updated successfully", response);
+          alert("Data opdateret!");
+        },
+        error: (error) => {
+          console.log("Error updating data:", error);
+          alert("Der skete en fejl under opdateringen af data.");
+        }
+      })
+    }
   }
   deleteData(): void {
     alert("Er du sikker på at du vil slette dyret?");

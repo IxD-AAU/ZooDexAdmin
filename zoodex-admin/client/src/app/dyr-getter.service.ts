@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class DyrGetterService {
 
   public dyr!: any;
+  public dyr_archive!: any;
 
   constructor(private http: HttpClient) {
     this.setTranslations();
@@ -16,6 +17,9 @@ export class DyrGetterService {
     this.http.get('http://localhost:3000/api/dyr').subscribe(data => {
       this.dyr = data;
     });
+    this.http.get('http://localhost:3000/api/dyr_STORAGE').subscribe(data => {
+      this.dyr_archive = data;
+    })
   }
 
   getAnimalsInZoo():string[] {

@@ -21,6 +21,7 @@ export class DyrComponent implements OnInit {
 
   constructor(
     public sidebarService: SidebarService,
+    private router: Router,
     public readonly dyrGetterService: DyrGetterService
   ) { }
 
@@ -36,6 +37,9 @@ export class DyrComponent implements OnInit {
 
 
     }, 1500);
+  }
+  CreateNewDyr(): void{
+    this.router.navigate(['/Dyr-Create']);
   }
 
 

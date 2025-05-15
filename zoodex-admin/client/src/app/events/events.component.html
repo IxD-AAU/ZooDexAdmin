@@ -72,7 +72,7 @@
         <ul>
           <article *ngFor="let event of eventsPageTextUpcomingEventsOrdered; let i = index">
             <li>
-              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextUpcomingEventsOrdered[i].ID}">{{ eventsPageTextUpcomingEventsOrdered[i].Name }} Dato: {{eventsPageTextUpcomingEventsOrdered[i].Dato}}</a>
+              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextUpcomingEventsOrdered[i].ID}">{{ eventsPageTextUpcomingEventsOrdered[i].Name }} Dato: {{eventsPageTextUpcomingEventsOrdered[i].Dato}} <button>Slet</button> </a>
             </li><br>
 
           </article>

@@ -15,6 +15,8 @@ import { DyrInfoEditComponent } from './dyr-info-edit/dyr-info-edit.component';
 import { EventsInfoComponent } from './events-info/events-info.component';
 import { EventsCreateComponent } from './events-create/events-create.component';
 import { DyrCreateComponent } from './dyr-create/dyr-create.component';
+import { AdminComponent } from './admin/admin.component';
+
 
 export const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -30,7 +32,8 @@ export const routes: Routes = [
   { path: 'Dyr-Info-Edit', component: DyrInfoEditComponent},
   { path: 'Events-Info', component: EventsInfoComponent},
   { path: 'Events-Create', component: EventsCreateComponent},
-  { path: 'Dyr-Create', component: DyrCreateComponent}
+  { path: 'Dyr-Create', component: DyrCreateComponent},
+  { path: 'Admin', component: AdminComponent }
 ];
 
 @NgModule({

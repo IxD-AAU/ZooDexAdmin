@@ -1,1 +1,53 @@
-<p>admin works!</p>
+<app-sidebar></app-sidebar>
+
+<div class="Padding">
+<section>
+  <button type="button" (click)="reDirectToCreate()">Opret ny Bruger</button>
+  <div style="margin-bottom: 20px;"></div>
+
+  <article *ngIf="isDataReady; else loading" class="table-container">
+    <table>
+      <tr>
+          <th>Bruger I systemet</th>
+          <th></th>
+          <th></th>
+      </tr>
+        <tr *ngFor="let i of getRange(getMaxLength())">
+          <td>
+            {{ userPageText[i]?.FirstName || ' - '}} {{userPageText[i]?.LastName || ' - '}}
+          </td>
+          <td>
+            <button type="button">Redigere</button>
+          </td>
+          <td>
+            <button type="button">Slet</button>
+          </td>
+        </tr>
+    </table>
+    <table>
+      <tr>
+        <th>Bruger I Arkivet</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let i of getRange(getMaxLength())">
+        <td>
+            {{userArchivePageText[i]?.FirstName || ' - '}} {{userArchivePageText[i]?.LastName|| ' - '}}
+          </td>
+          <td>
+            <button type="button">Redigere</button>
+          </td>
+          <td>
+            <button type="button">Slet</button>
+          </td>
+      </tr>
+    </table>
+
+  </article>
+</section>
+</div>
+
+
+<ng-template #loading>
+  <h2>Data loading</h2>
+</ng-template>

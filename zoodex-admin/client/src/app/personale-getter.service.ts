@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class PersonaleGetterService {
 
   public personale!: any;
+  public persoanleArchive!: any;
 
   constructor(private http: HttpClient){
     this.setTranslations();
@@ -17,8 +18,14 @@ export class PersonaleGetterService {
     this.http.get('http://localhost:3000/api/personale').subscribe( data => {
       this.personale = data;
     });
+    this.http.get('http://localhost:3000/api/personale_STORAGE').subscribe( data => {
+      this.persoanleArchive = data;
+    });
   }
   public getPersonaleData(){
     return (this.http.get('http://localhost:3000/api/personale'));
+  }
+  public getPersonaleArchiveData(){
+
   }
 }

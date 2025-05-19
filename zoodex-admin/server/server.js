@@ -102,7 +102,7 @@ app.post('/api/database/update', (req, res) => {
             res.status(500).send({ error: 'Failed to update Events Database' });
         }
     }
-    else if(req.body.DataSet=="Dyr-STORAGE"){
+    else if(req.body.DataSet=="DyrSTORAGE"){
         try {
             const query = database.prepare('UPDATE DyrSTORAGE SET Name = ?, Type = ?, Description = ?, Personality = ?, WeightMaleMin = ?, WeightMaleMax = ?, WeightFemaleMin = ?, WeightFemaleMax = ?, Height = ?, Speed = ?, YoungMin = ?, YoungMax = ? WHERE ID = ?');
             query.run(req.body.Data.Name,req.body.Data.Type,req.body.Data.Description,req.body.Data.Personality,req.body.Data.WeightMaleMin,req.body.Data.WeightMaleMax,req.body.Data.WeightFemaleMin,req.body.Data.WeightFemaleMax,req.body.Data.Height,req.body.Data.Speed,req.body.Data.YoungMin,req.body.Data.YoungMax,req.body.ID);
@@ -112,7 +112,7 @@ app.post('/api/database/update', (req, res) => {
             res.status(500).send({ error: 'Failed to update Dyr-Arkiv Database', details: error.message});
         }
     }
-    else if(req.body.DataSet=="Personale-STORAGE"){
+    else if(req.body.DataSet=="PersonaleSTORAGE"){
         try {
             const query = database.prepare('UPDATE PersonaleSTORAGE SET Username = ?, Password = ?, FirstName = ?, LastName = ?, Mail = ?, Job = ? WHERE ID = ?');
             query.run(req.body.Data.Username,req.body.Data.Password,req.body.Data.FirstName,req.body.Data.LastName,req.body.Data.Mail,req.body.Data.Job,req.body.ID);
@@ -122,7 +122,7 @@ app.post('/api/database/update', (req, res) => {
             res.status(500).send({ error: 'Failed to update Personale-Arkiv Databse', details: error.message});
         }
     }
-    else if(req.body.DataSet=="Beskeder-STORAGE"){
+    else if(req.body.DataSet=="BeskederSTORAGE"){
         try {
             const query = database.prepare('UPDATE BeskederSTORAGE SET Title = ?, Category = ?, Sender = ?, Reciever = ?, DataSet= ? WHERE ID= ?');
             query.run(req.body.Data.Title,req.body.Data.Category,req.body.Data.Sender,req.body.Data.Reciever,req.body.Data.DataSet,req.body.ID);
@@ -132,7 +132,7 @@ app.post('/api/database/update', (req, res) => {
             res.status(500).send({ error: 'Failed to updaqte Beskeder-Arkiv Database'});
         }
     }
-    else if(req.body.DataSet=="Events-STORAGE"){
+    else if(req.body.DataSet=="EventsSTORAGE"){
         try {
             const query = database.prepare('UPDATE EventsSTORAGE SET Name = ?, Dato = ?, StartTime = ?, Info = ?, DataSet = ? WHERE ID = ?');
             query.run(req.body.Data.Name,req.body.Data.Dato,req.body.Data.StartTime,req.body.Data.Info,req.body.DataSet,req.body.ID);
@@ -189,7 +189,7 @@ app.post('/api/database/insert', (req, res) => {
             res.status(500).send({ error: 'Failed to update Events Database' });
         }
     }
-    else if (req.body.DataSet=="Dyr-STORAGE"){
+    else if (req.body.DataSet=="DyrSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO DyrSTORAGE (Name, Type, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax, DataSet) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
             query.run(req.body.Data.Name,req.body.Data.Description,req.body.Data.Personality,req.body.Data.WeightMaleMin,req.body.Data.WeightMaleMax,req.body.Data.WeightFemaleMin,req.body.Data.WeightFemaleMax,req.body.Data.Height,req.body.Data.Speed,req.body.Data.YoungMin,req.body.Data.YoungMax,req.body.DataSet);
@@ -199,7 +199,7 @@ app.post('/api/database/insert', (req, res) => {
             res.status(500).send({ error: 'Failed to updated Dyr-Arkiv Database', details: error.message});
         }
     }
-    else if (req.body.DataSet=="Personale-STORAGE"){
+    else if (req.body.DataSet=="PersonaleSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO PersonaleSTORAGE (Username, Password, FirstName, LastName, Mail, Job, DataSet) VALUES (?, ?, ?, ?, ?, ?, ?)');
             query.run(req.body.Data.Username,req.body.Data.Password,req.body.Data.FirstName,req.body.Data.LastName,req.body.Data.Mail,req.body.Data.Job,req.body.DataSet);
@@ -209,7 +209,7 @@ app.post('/api/database/insert', (req, res) => {
             res.status(500).send({ error: 'Failed to update Personale-Arkiv Database', details: error.message});
         }
     }
-    else if (req.body.DataSet=="Beskeder-STORAGE"){
+    else if (req.body.DataSet=="BeskederSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO BeskederSTORAGE (Title, Category, Sender, Reciever, DataSet) VALUES (?, ?, ?, ?, ?)');
             query.run(req.body.Data.Title,req.body.Category,req.body.Sender,req.body.Data.Reciever,req.body.DataSet);
@@ -219,7 +219,7 @@ app.post('/api/database/insert', (req, res) => {
             res.status(500).send({ error: 'Failed to update Beskeder-Arkiv Database'});
         }
     }
-    else if (req.body.DataSet=="Events-STORAGE"){
+    else if (req.body.DataSet=="EventsSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO EventsSTORAGE (Name, Dato, StartTime, Info, DataSet) VALUES (?, ?, ?, ?, ?)');
             query.run(req.body.Data.Name, req.body.Data.Dato,req.body.Data.StartTime,req.body.data.Info,req.body.DataSet);
@@ -276,7 +276,7 @@ app.post('/api/database/delete', (req, res) => {
             res.status(500).send({ error: 'Failed to update Events Database' });
         }
     }
-    else if (req.body.DataSet=="Dyr-STORAGE"){
+    else if (req.body.DataSet=="DyrSTORAGE"){
         try {
             const query = database.prepare('DELETE FROM DyrSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
@@ -286,7 +286,7 @@ app.post('/api/database/delete', (req, res) => {
             res.status(500).send({ error: 'Failed to update Dyr-Arkiv Database', details: error.message });
         }
     }
-    else if (req.body.DataSet=="Personale-STORAGE"){
+    else if (req.body.DataSet=="PersonaleSTORAGE"){
         try{
             const query = database.prepare('DELETE FROM PersonaleSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
@@ -297,7 +297,7 @@ app.post('/api/database/delete', (req, res) => {
         }
 
     }
-    else if (req.body.DataSet=="Beskeder-STORAGE"){
+    else if (req.body.DataSet=="BeskederSTORAGE"){
         try {
             const query = database.prepare('DELETE FROM BeskederSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
@@ -307,7 +307,7 @@ app.post('/api/database/delete', (req, res) => {
             res.status(500).send({ error: 'Failed to update Beskeder-Arkiv Database'});
         }
     }
-    else if (req.body.DataSet=="Events-STORAGE"){
+    else if (req.body.DataSet=="EventsSTORAGE"){
         try {
             const query = database.prepare('DELETE FROM EventsSTORAGE WHERE ID = ?');
             query.run(req.body.ID);

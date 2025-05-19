@@ -45,11 +45,16 @@ export class SidebarComponent implements OnInit {
     this.router.navigate([route]);
   }
   isAdmin(userIndex: number):void{
-    if (this.user[userIndex].Job == "IT-Support"){
-      this.userIsAdmin = true;
+    if (this.user != undefined || this.user != null){
+      if (this.user[userIndex].Job == "IT-Support"){
+        this.userIsAdmin = true;
+      }
+      else{
+        this.userIsAdmin = false;
+      }
     }
-    else{
-      this.userIsAdmin = false;
+    else {
+      this.userIsAdmin = false
     }
   }
 }

@@ -44,13 +44,16 @@ export class DyrCreateComponent implements OnInit{
     console.log(this.newDyrPageText);
     console.log(this.selectedDataSet);
     if (this.selectedDataSet=="Ja"){
-      this.newDyrPageText.DataSet="Dyr-STORAGE";
+      this.newDyrPageText.DataSet="DyrSTORAGE";
     }
     else if (this.selectedDataSet=="Nej"){
       this.newDyrPageText.DataSet="Dyr";
     }
     console.log("Data to send:", this.newDyrPageText);
-    this.databaseHandlerService.insertDatabase(this.newDyrPageText,this.newDyrPageText.DataSet);
+    this.databaseHandlerService.insertDatabase(this.newDyrPageText,this.newDyrPageText.DataSet).subscribe(
+      (response)=>{console.log('Dyr Created', response);},
+      (error)=>{console.log('Error', error);}
+    );;
   }
   reDirectBack(): void{
     this.router.navigate(['/Dyr']);

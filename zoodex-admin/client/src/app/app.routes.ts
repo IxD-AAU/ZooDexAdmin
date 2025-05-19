@@ -16,6 +16,8 @@ import { EventsInfoComponent } from './events-info/events-info.component';
 import { EventsCreateComponent } from './events-create/events-create.component';
 import { DyrCreateComponent } from './dyr-create/dyr-create.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { AdminCreateComponent } from './admin-create/admin-create.component';
 
 
 export const routes: Routes = [
@@ -33,7 +35,9 @@ export const routes: Routes = [
   { path: 'Events-Info', component: EventsInfoComponent},
   { path: 'Events-Create', component: EventsCreateComponent},
   { path: 'Dyr-Create', component: DyrCreateComponent},
-  { path: 'Admin', component: AdminComponent }
+  { path: 'Admin', component: AdminComponent },
+  { path: 'Admin-Edit', component: AdminEditComponent},
+  { path: 'Admin-Create', component: AdminCreateComponent}
 ];
 
 @NgModule({

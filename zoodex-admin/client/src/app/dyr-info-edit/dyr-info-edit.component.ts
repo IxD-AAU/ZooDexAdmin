@@ -67,7 +67,7 @@ export class DyrInfoEditComponent implements OnInit {
         }
       });
     }
-    else if(this.DataSet == "Dyr-STORAGE") {
+    else if(this.DataSet == "DyrSTORAGE") {
       const dataToSend = this.dyrArkivPageText[this.animalID];
       this.databaseHandlerService.updateDatabase(this.animalID,dataToSend,this.DataSet).subscribe({
         next: (response) => {

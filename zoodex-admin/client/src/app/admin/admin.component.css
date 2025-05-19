@@ -1,0 +1,25 @@
+.Padding{
+  padding-top: 1%;
+  padding-left: 20%;
+}
+
+tr:nth-child(even) {
+  background-color: #EEEEEE;
+}
+
+
+.table-container{
+  display: flex;
+  gap: 20px;
+}
+
+.table-container table {
+  border-collapse: collapse;
+  width: 400px;
+}
+
+.table-container th, .table-container td {
+  border: 1px solid #777777;
+  text-align: left;
+  padding: 8px;
+}

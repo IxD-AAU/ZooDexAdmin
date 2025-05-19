@@ -41,8 +41,9 @@ export class DyrInfoComponent implements OnInit {
       this.dyrPageText = this.dyrGetterService.dyr;
       this.dyrArkivPageText = this.dyrGetterService.dyr_archive;
       this.animalsInZoo = this.dyrGetterService.getAnimalsInZoo();
+      this.dataSetLoader();
       this.isDataReady = true;
-})
+},1000)
 }
   reDirectToEdit():void {
     this.router.navigate(['/Dyr-Info-Edit'], { queryParams: { id: this.animalID, DataSet: this.dataSet } });

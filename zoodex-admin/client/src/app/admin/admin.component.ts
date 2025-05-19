@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SidebarService } from '../sidebar.service';
 import { PersonaleGetterService } from '../personale-getter.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ɵnormalizeQueryParams } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 
 
@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit{
   isDataReady: boolean = false;
   public userPageText!: any;
   public userArchivePageText!: any;
-
+  trueDataSet = '';
 
   constructor(
     public sidebarService: SidebarService,
@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit{
 
       setTimeout(()=>{
         this.userPageText = this.personaleGetterService.personale;
-        this.userArchivePageText = this.personaleGetterService.persoanleArchive;
+        this.userArchivePageText = this.personaleGetterService.personaleArchive;
 
         console.log("Normal users",this.userPageText);
         console.log("Archive users",this.userArchivePageText)
@@ -49,8 +49,24 @@ export class AdminComponent implements OnInit{
     return Array.from({ length }, (_, i)=> i)
   }
 
-  reDirectToEdit():void{
+  reDirectToEdit(index: number, dataSet: string):void{
 
+
+
+    if (dataSet == "userPageText"){
+      this.trueDataSet = "Personale";
+    }
+    else if (dataSet == "userArchivePageText"){
+      this.trueDataSet = "PersonaleSTORAGE";
+    }
+    const queryParams = {
+      index: index,
+      dataSet: this.trueDataSet
+    }
+
+    console.log(queryParams);
+
+    this.router.navigate(['/Admin-Edit'], {queryParams});
   }
   deleteEntry(){}
   reDirectToCreate():void{

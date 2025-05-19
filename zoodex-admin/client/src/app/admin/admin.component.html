@@ -17,7 +17,7 @@
             {{ userPageText[i]?.FirstName || ' - '}} {{userPageText[i]?.LastName || ' - '}}
           </td>
           <td>
-            <button type="button">Redigere</button>
+            <button type="button" (click)="reDirectToEdit(i,'userPageText')">Redigere</button>
           </td>
           <td>
             <button type="button">Slet</button>
@@ -35,7 +35,7 @@
             {{userArchivePageText[i]?.FirstName || ' - '}} {{userArchivePageText[i]?.LastName|| ' - '}}
           </td>
           <td>
-            <button type="button">Redigere</button>
+            <button type="button" (click)="reDirectToEdit(i,'userArchivePageText')">Redigere</button>
           </td>
           <td>
             <button type="button">Slet</button>

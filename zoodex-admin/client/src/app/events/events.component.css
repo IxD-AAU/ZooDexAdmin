@@ -1,0 +1,140 @@
+.New_Aktivit {
+  padding-top: 2%;
+
+}
+
+h1 {
+    font-size: 32px; /* Større end h2 */
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+.content-wrapper {
+    margin-left: 300px; /* Giver plads til sidebaren */
+    position: relative; /* Sørger for, at indholdet placeres korrekt */
+}
+
+
+.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* To kolonner med lige bredde */
+  gap: 20px; /* Afstand mellem kolonner */
+  margin-left: 300px; /* Giver plads til sidebaren */
+}
+/* .scrollable-container {
+    width: 450px;
+    height: 100%;
+    touch-action: pan-up;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #f0f0f0;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-right: 0;
+    padding-bottom: 40%;
+    position: absolut;  Placeres relativt til .content-wrapper
+    top: 20px;
+    left: 0; Starter fra venstre kant af .content-wrapper
+    text-align: left;
+} */
+
+.scrollable-container {
+  width: 450px;
+  height: 350px;
+  touch-action: pan-up;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #f0f0f0;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-right: 0;
+  padding-bottom: 40%;
+  position: relative; /* Placeres relativt til .content-wrapper */
+  top: 20px;
+  left: 0; /* Starter fra venstre kant af .content-wrapper */
+  text-align: left;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f0f0f0;
+}
+
+.scrollable-container::-webkit-scrollbar{
+  width: 12px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+}
+
+.scrollable-container::-webkit-scrollbar-track{
+  background-color: #f0f0f0;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #f0f0f0;
+  z-index: 10;
+  text-align: center;
+}
+
+/* Container for flexboxes the OG one */
+/*section {
+    padding-left: 25%;
+
+  }
+
+ /*use this one too*/
+ /*.scrollable-container {
+    width: 350px;
+    height: 10px; /*Juster højden som ønsket */
+    /*touch-action: pan-up;
+    overflow-y: auto;
+    overflow-x: hidden; /* Skjul vandret rullefelt */
+    /*background-color: #f0f0f0;
+    padding-left: 10px; /* Fjern ekstra afstand til venstre */
+    /*padding-top: 20px; /* Tilføj lidt afstand til toppen */
+    /*padding-right: 0; /* Fjern ekstra afstand til højre */
+    /*padding-bottom: 40%;/* Tilføj lidt afstand til bunden */
+    /*margin-left: 20%;/* Flytter containeren mod højre */
+    /*margin-top: 1.5%;/* Flytter containeren nedad */
+    /*text-align: left;/* Sørger for, at teksten justeres til venstre */
+ /*}*/
+
+  /*this one is the one we use so far no!*/
+ /*.scorollable-container {
+    width: 350px;
+    height: 10px;
+    touch-action: pan-up;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    padding-left: 10; /* Fjern ekstra afstand til venstre */
+    /*padding-top: 20px; /* Tilføj lidt afstand til toppen */
+    /*padding-right: 0; /* Fjern ekstra afstand til højre */
+    /*padding-bottom: 40%; /* Tilføj lidt afstand til bunden */
+    /*margin-left: auto; /* Skubber containeren til højre */
+    /*margin-right: 0; /* Sørger for, at der ikke er ekstra afstand til højre */
+    /*margin-top: 1.5%; /* Flytter containeren nedad */
+   /*text-align: left; /* Sørger for, at teksten justeres til venstre */
+/*}*/
+
+/*forsøg 1*/
+/*.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* To kolonner med lige bredde */
+ /* gap: 20px; /* Afstand mellem kolonner */
+/*}
+
+.scrollable-container,
+.two-column-layout {
+  border: 1px solid #ccc; /* Valgfri kant for synlighed */
+  /*padding: 10px; /* Indvendig afstand */
+  /*box-sizing: border-box; /* Sørger for, at padding ikke påvirker bredden */
+/*}*/
+

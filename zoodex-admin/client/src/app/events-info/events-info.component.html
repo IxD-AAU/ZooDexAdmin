@@ -1,0 +1,23 @@
+<app-sidebar></app-sidebar>
+
+<section *ngIf="isDataReady; else loading">
+  <article>
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <label for="Name">Aktivitetens Navn: </label>
+      <input type="text" [(ngModel)]='eventsPageText[this.eventID].Name' id="Name" name="Name" required><br>
+      <label for="Dato">Aktivitetens Dag: </label>
+      <input type="text" [(ngModel)]='eventsPageText[this.eventID].Dato' id="Dato" name="Dato" required><br>
+      <label for="StartTime">Aktivitetens Start Tid: </label>
+      <input type="text" [(ngModel)]='eventsPageText[this.eventID].StartTime' id="StartTime" name="StartTime" required><br>
+      <label for="Info">Aktivitetens Info: </label>
+      <input type="text" [(ngModel)]='eventsPageText[this.eventID].Info' id="Info" name="Info" required><br>
+      <input type="submit" id="submitButton" value="Gem Ændringer"><br>
+    </form>
+    <button type="button" (click)="removeData()">Slet Aktivitet</button><br>
+    <button type="button" (click)="reDirectBack()">Tilbag til oversigt</button><br>
+  </article>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>

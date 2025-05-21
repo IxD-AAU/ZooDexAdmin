@@ -1,0 +1,42 @@
+<app-sidebar></app-sidebar>
+
+<div class="MoveToRight">
+  <button type ="button" (click)="CreateNewDyr()">Opret Nyt Dyr</button>
+</div>
+<section *ngIf="isDataReady; else loading">
+  <article>
+    <table>
+      <tr>
+        <th>Dyr:</th>
+        <th>Dyr i Arkiv:</th>
+      </tr>
+      <tr *ngFor="let animals of dyrPageText; let i = index">
+        <td>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i, DataSet: dyrPageText[i].DataSet}"> {{ dyrPageText[i].Name }} </a>
+        </td>
+        <td>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{id: i, DataSet: dyrArkiv[i].DataSet}"> {{ dyrArkiv[i].Name }} </a>
+        </td>
+      </tr>
+
+    </table>
+
+
+
+    <!-- <ul>
+      <li *ngFor="let animals of dyrPageText; let i = index">
+        <p>
+          <a [routerLink]="['/Dyr_Info']" [queryParams]="{ id: i}"> {{ dyrPageText[i].Name }} </a>
+        </p>
+      </li>
+    </ul> -->
+  </article>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>
+
+<ng-template #DatanotFound>
+  <h2>Bruger ikke fundet i systemet, kontakt IT support</h2>
+</ng-template>

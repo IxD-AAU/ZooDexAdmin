@@ -1,0 +1,21 @@
+<app-sidebar></app-sidebar>
+
+<section *ngIf="isDataReady; else loading">
+  <article>
+    <p> Fornavn: {{ pageText[ProfileData].FirstName }} </p>
+    <p> Efternavn: {{ pageText[ProfileData].LastName }} </p>
+    <p> Mail: {{ pageText[ProfileData].Mail }} </p>
+    <p> Afdeling: {{ pageText[ProfileData].Job }} </p>
+    <img src='{{ "personale/Profile_Pictures/USER" + UserID + ".jpg" }}'>
+  </article>
+
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>
+
+<ng-template #DatanotFound>
+  <h2>Bruger ikke fundet i systemet, kontakt IT support</h2>
+</ng-template>
+

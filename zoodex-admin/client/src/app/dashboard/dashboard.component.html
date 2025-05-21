@@ -1,0 +1,24 @@
+<app-sidebar></app-sidebar>
+
+<section>
+  <article *ngIf="isDataReady;else loading">
+    <div *ngIf="isntEventsEmpty;else noEvents">
+    <h2>Aktiviteter på i dags skema</h2>
+    <ul *ngFor="let item of eventsToday; let i = index">
+      <li>kl: {{
+      (item.StartTime ? (item.StartTime + '').slice(0,2) + ':' + (item.StartTime + '').slice(2) : '')
+    }}
+    {{ item.Name }}
+      </li>
+    </ul>
+    </div>
+  </article>
+</section>
+
+<ng-template #loading>
+    <h2>Loading Data</h2>
+</ng-template>
+
+<ng-template #noEvents>
+  <h2>Ingen Aktiviteter i dag</h2>
+</ng-template>

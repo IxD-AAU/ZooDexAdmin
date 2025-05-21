@@ -1,0 +1,26 @@
+<app-sidebar></app-sidebar>
+<section *ngIf="isDataReady; else loading">
+  <article>
+    <table>
+      <thead>
+        <tr>
+          <th>Fornavn</th>
+          <th>Efternavn</th>
+          <th>Mail</th>
+          <th>Afdeling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of pageText; let i = index">
+          <td>{{ pageText[i].FirstName }}</td>
+          <td>{{ pageText[i].LastName }}</td>
+          <td>{{ pageText[i].Mail}}</td>
+          <td>{{ pageText[i].Job }}</td>
+        </tr>
+    </table>
+  </article>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>

@@ -1,0 +1,38 @@
+<app-sidebar></app-sidebar>
+
+<div class="indstillinger-container">
+ <h1>Indstillinger</h1>
+  <div class="indstillinger-card">
+    <h2>Udseende</h2>
+    <p>Her kan du vælge udseende for web-appen.</p>
+    <mat-checkbox [checked]="selectedTheme === 'Lys'" (change)="selectTheme('Lys')">Lys</mat-checkbox>
+    <mat-checkbox [checked]="selectedTheme === 'Mørk'" (change)="selectTheme('Mørk')">Mørk</mat-checkbox>
+    <mat-checkbox [checked]="selectedTheme === 'Auto'" (change)="selectTheme('Auto')">Auto</mat-checkbox>
+  </div>
+
+  <div class="indstillinger-card">
+    <h2>Notifikationer</h2>
+    <p>Her kan du administrere dine notifikationer.</p>
+    <mat-checkbox
+      [checked]="selectedNotifications.includes('Mobil')"
+      (change)="toggleNotification('Mobil')"
+    >
+      Mobil telefon
+    </mat-checkbox>
+    <mat-checkbox
+      [checked]="selectedNotifications.includes('Mail')"
+      (change)="toggleNotification('Mail')"
+    >
+      Mail
+    </mat-checkbox>
+  </div>
+
+  <div class="indstillinger-card">
+    <h2>Sprog</h2>
+    <p>Vælg dit foretrukne sprog:</p>
+<select [(ngModel)]="selectedLanguage" (change)="selectLanguage($event)">
+  <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
+</select>
+  </div>
+</div>
+<link rel="stylesheet" href="indstillinger.component.css">

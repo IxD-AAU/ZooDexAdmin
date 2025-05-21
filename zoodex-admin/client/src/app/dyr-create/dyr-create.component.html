@@ -1,0 +1,39 @@
+<app-sidebar></app-sidebar>
+
+<section>
+  <article>
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <label for="Name">Navn: </label>
+      <input type="text" [(ngModel)]='newDyrPageText.Name' id="Name" name="Name" required><br>
+      <label for="Type">Type: </label>
+      <input type="text" [(ngModel)]='newDyrPageText.Type' id="Type" name="Type" required><br>
+      <label for="Description">Beskrivelse: </label>
+      <input type="text" [(ngModel)]='newDyrPageText.Description' id="Description" name="Description" required><br>
+      <label for="Personality">Personlighed: </label>
+      <input type="text" [(ngModel)]='newDyrPageText.Personality' id="Personality" name="Personality" required><br>
+      <label for="WeightMaleMin">Vægt Han Minimun: </label>
+      <input type="number" [(ngModel)]='newDyrPageText.WeightMaleMin' id="WeightMaleMin" name="WeightMaleMin" required><br>
+      <label for="WeightMaleMax">Vægt Han Maksimum: </label>
+      <input type="number" [(ngModel)]='newDyrPageText.WeightMaleMax' id="WeightMaleMax" name="WeightMaleMax" required><br>
+      <label for="WeightFemaleMin">Vægt Hun Minimun</label>
+      <input type="number" [(ngModel)]='newDyrPageText.WeightFemaleMin' id="WeightFemaleMin" name="WeightFemaleMin" required><br>
+      <label for="WeightFemaleMax">Vægt Hun Maksimum: </label>
+      <input type="number" [(ngModel)]='newDyrPageText.WeightFemaleMax' id="WeightFemaleMax" name="WeightFemaleMax" required><br>
+      <label for="Height">Højde: </label>
+      <input type="number" [(ngModel)]='newDyrPageText.Height' id="Height" name="Height" required><br>
+      <label for="Speed">Hastighed (km/t): </label>
+      <input type="number" [(ngModel)]='newDyrPageText.Speed' id="Speed" name="Speed" required><br>
+      <label for="YoungMin">Under Minimun: </label>
+      <input type="number" [(ngModel)]='newDyrPageText.YoungMin' id="YoungMin" name="YoungMin" required><br>
+      <label for="YoungMax">Unger Maksimum: </label>
+      <input type="number" [(ngModel)]='newDyrPageText.YoungMax' id="YoungMax" name="YoungMax" required><br>
+      <label for="DataSet">I Arkiv: </label>
+      <select id="DataSet" [(ngModel)]='selectedDataSet' name="DataSet">
+        <option value="Ja">Ja</option>
+        <option value="Nej">Nej</option>
+      </select><br><br>
+      <input type="submit" id="submitButton" value="Tilføj nyt Dyr"><br>
+    </form>
+  </article>
+  <button type="button" (click)="reDirectBack()">Tilbag</button>
+</section>

@@ -1,0 +1,20 @@
+{"PERSONALE":{
+    "USER1":{
+      "Login": "JJENSEN",
+      "Password": "ostemad",
+      "FirstName": "Jens",
+      "LastName": "Jensen",
+      "Mail": "JJensen@zoodex.dk",
+      "Job": "IT-Support"
+    },
+    "USER2":{
+      "Login": "HHANSEN",
+      "Password": "løgringe",
+      "FirstName": "Hans",
+      "LastName": "Hansen",
+      "Mail": "HHansen@zoodex.dk",
+      "Job": "IT-Support"
+    }
+  }
+
+}

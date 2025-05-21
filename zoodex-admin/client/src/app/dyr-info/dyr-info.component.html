@@ -1,0 +1,50 @@
+<app-sidebar></app-sidebar>
+
+<section *ngIf="isDataReady; else loading">
+  <article *ngIf="isDyrDataSet; else DyrArkiv">
+    <p>Dyr: {{ dyrPageText[animalID].Name }}</p>
+    <p>Type: {{ dyrPageText[animalID].Type }}</p>
+    <p>Beskrivelse: {{ dyrPageText[animalID].Description }}</p>
+    <p>Personlighed: {{dyrPageText[animalID].Personality }}</p>
+    <table>
+      <tr>
+        <th>Vægt Han</th>
+        <th>Vægt Hun</th>
+      </tr>
+      <tr>
+        <td>{{ dyrPageText[animalID].WeightMaleMin }} - {{ dyrPageText[animalID].WeightMaleMax }}</td>
+        <td>{{ dyrPageText[animalID].WeightFemaleMin }} - {{ dyrPageText[animalID].WeightFemaleMax }}</td>
+      </tr>
+    </table>
+    <p>Højde: {{ dyrPageText[animalID].Height }}</p>
+    <p>Hastighed: optil {{ dyrPageText[animalID].Speed }} km/t</p>
+    <p>Unger: {{ dyrPageText[animalID].YoungMin }} - {{ dyrPageText[animalID].YoungMax }}</p>
+  </article>
+    <button type="button" (click)="reDirectToEdit()">Redigere</button>
+</section>
+
+<ng-template #loading>
+  <h2>Loading Data</h2>
+</ng-template>
+
+<ng-template #DyrArkiv>
+  <article>
+    <p>Dyr: {{ dyrArkivPageText[animalID].Name }}</p>
+    <p>Type: {{ dyrArkivPageText[animalID].Type }}</p>
+    <p>Beskrivelse: {{ dyrArkivPageText[animalID].Description }}</p>
+    <p>Personlighed: {{ dyrArkivPageText[animalID].Personality }}</p>
+    <table>
+      <tr>
+        <th>Vægt Han</th>
+        <th>Vægt Hun</th>
+      </tr>
+      <tr>
+        <td> {{ dyrArkivPageText[animalID].WeightMaleMin }} - {{dyrArkivPageText[animalID].WeightMaleMax}} </td>
+        <td> {{ dyrArkivPageText[animalID].WeightFemaleMin}} - {{ dyrArkivPageText[animalID].WeightFemaleMax}} </td>
+      </tr>
+    </table>
+    <p>Højde: {{ dyrArkivPageText[animalID].Height}} </p>
+    <p>Hastighed: optil {{ dyrArkivPageText[animalID].Speed }}</p>
+    <p>Under: {{ dyrArkivPageText[animalID].YoungMin}} - {{ dyrArkivPageText[animalID].YoungMax}}</p>
+  </article>
+</ng-template>

@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/angular-calendar/css/angular-calendar.css';
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  background-color: #fdfaec;
+}
+body {
+  margin: 0;
+  font-family: Figtree, "Figtree", sans-serif;
+}

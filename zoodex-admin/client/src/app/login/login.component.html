@@ -1,9 +1,11 @@
-<p>login works!</p>
+<div class="center">
+  <form (ngSubmit)="handleSubmit()" #myForm="ngForm">
+    <label for="username">Brugernavn:</label><br>
+    <input type="text" [(ngModel)]="Username" id="Username" name="Username" required><br>
+    <label for="pwd">Password:</label><br>
+    <input type="password" [(ngModel)]="Password" id="pwd" name="pwd" required><br>
+    <input type="Submit"  id="loginButton" value="Login">
+  </form>
+</div>
 
-<form (ngSubmit)="handleSubmit()" #myForm="ngForm">
-  <label for="username">Brugernavn:</label><br>
-  <input type="text" [(ngModel)]="Username" id="Username" name="Username" required><br>
-  <label for="pwd">Password:</label><br>
-  <input type="password" [(ngModel)]="Password" id="pwd" name="pwd" required><br>
-  <input type="Submit"  id="loginButton" value="Login">
-</form>
+<img src="Logos/Zoodex Admin Logo Black Trans.png">

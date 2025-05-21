@@ -3,7 +3,7 @@
 <div class="Padding">
 <section>
   <button type="button" (click)="reDirectToCreate()">Opret ny Bruger</button>
-  <button type="button" (click)="refreshData()">Geninlæs Data</button>
+  <button type="button" (click)="refreshData()" [disabled]="!isDataReady">Geninlæs Data</button>
   <div style="margin-bottom: 20px;"></div>
 
   <article *ngIf="isDataReady; else loading" class="table-container">
@@ -25,7 +25,7 @@
             <button type="button" (click)="moveUser(i,'Personale','Store',userPageText[i].Username)">Flyt til Arkiv</button>
           </td>
           <td>
-            <button type="button">Slet</button>
+            <button type="button" (click)="deleteEntry(i,userPageText[i].DataSet,userPageText[i].Username)">Slet</button>
           </td>
         </tr>
     </table>
@@ -48,7 +48,7 @@
             <button type="button" (click)="moveUser(i,'PersonaleSTORAGE','Retrive',userArchivePageText[i].Username)">Flyt fra Arkiv</button>
           </td>
           <td>
-            <button type="button">Slet</button>
+            <button type="button" (click)="deleteEntry(i,userArchivePageText[i].DataSet,userArchivePageText[i].Username)">Slet</button>
           </td>
         </tr>
     </table>

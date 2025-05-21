@@ -6,7 +6,6 @@ import { CommonModule, ɵnormalizeQueryParams } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { DatabaseHandlerService } from '../database-handler.service';
 import { response } from 'express';
-import { error } from 'console';
 
 
 @Component({
@@ -22,6 +21,7 @@ export class AdminComponent implements OnInit{
   public userArchivePageText!: any;
   trueDataSet = '';
   public trueID!: any;
+  correctedID: number = 0;
 
   constructor(
     public sidebarService: SidebarService,
@@ -73,7 +73,50 @@ export class AdminComponent implements OnInit{
 
     this.router.navigate(['/Admin-Edit'], {queryParams});
   }
-  deleteEntry(index: number, dataSet: string):void{
+  deleteEntry(index: number, dataSet: string, Username: string):void{
+    console.log("Deleting!");
+    alert("Er du sikker på du vil slette denne bruger fra systemet?");
+    if (confirm("Er du sikker på du vil slette denne bruger fra systemet?")){
+          this.databaseHandlerService.GetID(Username,dataSet).subscribe(
+            (response)=>{
+              if (response && response.ID){
+                this.trueID = response.ID;
+                console.log("ID:",this.trueID);
+                this.correctedID = Number(this.trueID)-1;
+                console.log("Corrected ID:", this.correctedID);
+                if (dataSet == "Personale"){
+                  this.databaseHandlerService.deleteDatabase(this.correctedID,dataSet).subscribe(
+                    (response)=>{
+                      console.log("User Removed", response);
+                    },
+                    (error)=>{
+                      console.error("Error:", error);
+                    }
+                  );
+                }
+                else if (dataSet=="PersonaleSTORAGE"){
+                  this.databaseHandlerService.deleteDatabase(this.correctedID,dataSet).subscribe(
+                    (response)=>{
+                      console.log("User Removed", response)
+                    },
+                    (error)=>{
+                      console.error("Error:", error);
+                    }
+                  );
+                }
+                else {
+                  console.log("Error. dataset does exist in database");
+                }
+              }
+            },
+            (error)=> {
+              console.error("Error:",error);
+            }
+          )
+      }
+      else {
+        console.log("Deletion Aborted");
+      }
 
   }
   moveUser(index: number, dataSet: string, moveset: string, Data: string): void {
@@ -92,12 +135,12 @@ export class AdminComponent implements OnInit{
       console.log("Data to move:",dataToMove);
 
       if (moveset === "Store") {
-        this.databaseHandlerService.StoreDatabse(dataToMove.ID, dataToMove.DataSet).subscribe(
+        this.databaseHandlerService.StoreDatabse(dataToMove.ID, dataToMove.DataSet,Data).subscribe(
           (storeResponse) => { console.log('User Moved', storeResponse); },
           (storeError) => { console.log('Error', storeError); }
         );
       } else if (moveset === "Retrive") {
-        this.databaseHandlerService.RetriveDatabase(dataToMove.ID, dataToMove.DataSet).subscribe(
+        this.databaseHandlerService.RetriveDatabase(dataToMove.ID, dataToMove.DataSet,Data).subscribe(
           (retrieveResponse) => { console.log("User Moved", retrieveResponse); },
           (retrieveError) => { console.log("Error", retrieveError); }
         );
@@ -117,9 +160,8 @@ export class AdminComponent implements OnInit{
 
 refreshData(): void {
   this.isDataReady = false;
-
-  // Fetch normal users
-  this.personaleGetterService.getPersonaleData().subscribe(
+  setTimeout(() => {
+    this.personaleGetterService.getPersonaleData().subscribe(
     (data) => {
       this.userPageText = data; // Assign the fetched data
       console.log("Refreshed Normal users: ", this.userPageText);
@@ -144,6 +186,8 @@ refreshData(): void {
       this.isDataReady = true; // Allow the UI to recover
     }
   );
+  }, 2000);
+  // Fetch normal users
 }
 
 }

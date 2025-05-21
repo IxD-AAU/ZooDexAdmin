@@ -41,9 +41,10 @@ export class DatabaseHandlerService {
 
     return this.http.post(`${this.apiUrl}/database/delete`, this.body);
   }
-  StoreDatabse(ID: number, DataSet: String): Observable<any>{
+  StoreDatabse(ID: number, DataSet: String, Data: String): Observable<any>{
 
     this.body = {
+      HandlerData: Data,
       ID: Number(ID)+1,
       DataSet: DataSet
     };
@@ -51,8 +52,9 @@ export class DatabaseHandlerService {
 
     return this.http.post(`${this.apiUrl}/database/storage`, this.body);
   }
-  RetriveDatabase(ID: number, DataSet: String): Observable<any>{
+  RetriveDatabase(ID: number, DataSet: String, Data: string): Observable<any>{
     this.body = {
+      HandlerData: Data,
       ID: Number(ID)+1,
       DataSet: DataSet
     };

@@ -104,7 +104,7 @@ export class DyrInfoEditComponent implements OnInit {
     alert("Er du sikker på at du vil flytte dyret til arkivet?");
     if (confirm("Er du sikker på at du vil flytte dyret til arkivet?")) {
       const dataSet = "Dyr";
-      this.databaseHandlerService.StoreDatabse(this.animalID, dataSet).subscribe({
+      this.databaseHandlerService.StoreDatabse(this.animalID, dataSet,this.dyrPageText[this.animalID].Name).subscribe({
         next: (response) => {
           console.log("Data moved successfully:", response);
           alert("Data flyttet til arkivet!");
@@ -124,7 +124,7 @@ export class DyrInfoEditComponent implements OnInit {
     alert("Er du sikker på at du vil hente dyret fra akrivet?");
     if (confirm("Er du sikker på at du vil hente dyret fra akrivet?")) {
       const dataSet = "Dyr";
-      this.databaseHandlerService.RetriveDatabase(this.animalID, dataSet).subscribe({
+      this.databaseHandlerService.RetriveDatabase(this.animalID, dataSet,this.dyrArkivPageText[this.animalID].Name).subscribe({
         next: (response) => {
           console.log("Data retrieved successfully:", response);
           alert("Data hentet fra arkivet!");

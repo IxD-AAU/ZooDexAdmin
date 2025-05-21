@@ -22,10 +22,10 @@ export class PersonaleGetterService {
       this.personaleArchive = data;
     });
   }
-  public getPersonaleData(){
-    return (this.http.get('http://localhost:3000/api/personale'));
+  getPersonaleData(){
+    return this.http.get('http://localhost:3000/api/personale');
   }
-  public getPersonaleArchiveData(){
-
+  getPersonaleArchiveData(){
+    return this.http.get('http://localhost:3000/api/personale_STORAGE');
   }
 }

@@ -4,6 +4,9 @@ import { SidebarService } from '../sidebar.service';
 import { PersonaleGetterService } from '../personale-getter.service';
 import { CommonModule, ɵnormalizeQueryParams } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';
+import { DatabaseHandlerService } from '../database-handler.service';
+import { response } from 'express';
+import { error } from 'console';
 
 
 @Component({
@@ -18,11 +21,13 @@ export class AdminComponent implements OnInit{
   public userPageText!: any;
   public userArchivePageText!: any;
   trueDataSet = '';
+  public trueID!: any;
 
   constructor(
     public sidebarService: SidebarService,
     private readonly personaleGetterService: PersonaleGetterService,
-    public router: Router
+    public router: Router,
+    public databaseHandlerService: DatabaseHandlerService
   ){}
 
 
@@ -68,8 +73,77 @@ export class AdminComponent implements OnInit{
 
     this.router.navigate(['/Admin-Edit'], {queryParams});
   }
-  deleteEntry(){}
+  deleteEntry(index: number, dataSet: string):void{
+
+  }
+  moveUser(index: number, dataSet: string, moveset: string, Data: string): void {
+  console.log("Running MoveUser");
+  console.log("Data:", Data, "DataSet:", dataSet);
+
+  this.databaseHandlerService.GetID(Data, dataSet).subscribe(
+    (response) => {
+      if (response && response.ID){
+      console.log('Grabbed ID', response);
+      this.trueID = response.ID; // Assuming the server response contains an `ID` field
+      const dataToMove = {
+        DataSet: dataSet,
+        ID: Number(this.trueID)-1
+      };
+      console.log("Data to move:",dataToMove);
+
+      if (moveset === "Store") {
+        this.databaseHandlerService.StoreDatabse(dataToMove.ID, dataToMove.DataSet).subscribe(
+          (storeResponse) => { console.log('User Moved', storeResponse); },
+          (storeError) => { console.log('Error', storeError); }
+        );
+      } else if (moveset === "Retrive") {
+        this.databaseHandlerService.RetriveDatabase(dataToMove.ID, dataToMove.DataSet).subscribe(
+          (retrieveResponse) => { console.log("User Moved", retrieveResponse); },
+          (retrieveError) => { console.log("Error", retrieveError); }
+        );
+      }
+      } else {
+        console.error('ID not found in response:', response);
+      }
+    },
+    (error) => {
+      console.log('Error', error);
+    }
+  );
+  }
   reDirectToCreate():void{
     this.router.navigate(['/Admin-Create']);
   }
+
+refreshData(): void {
+  this.isDataReady = false;
+
+  // Fetch normal users
+  this.personaleGetterService.getPersonaleData().subscribe(
+    (data) => {
+      this.userPageText = data; // Assign the fetched data
+      console.log("Refreshed Normal users: ", this.userPageText);
+
+      // Fetch archived users after normal users are fetched
+      this.personaleGetterService.getPersonaleArchiveData().subscribe(
+        (archiveData) => {
+          this.userArchivePageText = archiveData; // Assign the fetched data
+          console.log("Refreshed Archive users: ", this.userArchivePageText);
+
+          // Mark data as ready after both requests are complete
+          this.isDataReady = true;
+        },
+        (archiveError) => {
+          console.error("Failed to fetch archived users:", archiveError);
+          this.isDataReady = true; // Allow the UI to recover
+        }
+      );
+    },
+    (error) => {
+      console.error("Failed to fetch normal users:", error);
+      this.isDataReady = true; // Allow the UI to recover
+    }
+  );
+}
+
 }

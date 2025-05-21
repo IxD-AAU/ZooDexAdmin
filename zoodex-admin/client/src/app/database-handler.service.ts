@@ -47,8 +47,9 @@ export class DatabaseHandlerService {
       ID: Number(ID)+1,
       DataSet: DataSet
     };
+    console.log(this.body);
 
-    return this.http.post(`${this.apiUrl}/database/store`, this.body);
+    return this.http.post(`${this.apiUrl}/database/storage`, this.body);
   }
   RetriveDatabase(ID: number, DataSet: String): Observable<any>{
     this.body = {
@@ -56,7 +57,16 @@ export class DatabaseHandlerService {
       DataSet: DataSet
     };
 
-    return this.http.post(`${this.apiUrl}/database/retrieve`, this.body);
+    return this.http.post(`${this.apiUrl}/database/retrive`, this.body);
+  }
+
+  GetID(data:string, DataSet: String): Observable<any>{
+    this.body = {
+      Data: data,
+      DataSet: DataSet
+    }
+
+    return this.http.post(`${this.apiUrl}/IDGrabber`,this.body);
   }
 
 }

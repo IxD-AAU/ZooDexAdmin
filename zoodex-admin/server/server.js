@@ -59,6 +59,97 @@ app.get('/api/events_STORAGE', (req, res) => {
     res.send(result);
 })
 
+app.post('/api/IDGrabber', (req,res)=>{
+    console.log("Running ID_Grabber");
+    console.log("with DataSet:", req.body.DataSet,"& Data:",req.body.Data);
+    if (req.body.DataSet=="Dyr"){
+        try{
+            const query = database.prepare('SELECT ID FROM Dyr WHERE Name = ?');
+            const result = query.get(req.body.Data);
+            if (result){
+                res.status(200).send({ ID: result.ID});
+            } else {
+                res.status(404).send({ error: 'No matching record found'});
+            }
+        } catch(error){
+            res.status(500).send({ error: 'Failed to get ID for Dyr'});
+        }
+    }
+    else if (req.body.DataSet=="Personale"){
+        try{
+            const query = database.prepare('SELECT ID FROM Personale WHERE Username = ?');
+            const result = query.get(req.body.Data);
+            if (result){
+                res.status(200).send({ ID: result.ID});
+            }
+            else{
+                res.status(404).send({ error: 'No matching record found'});
+            }
+        } catch(error){
+            res.status(500).send({ error: 'Failed to get ID for Personale'});
+        }
+    }
+    else if (req.body.DataSet=="Events"){
+        try{
+            const query = database.prepare('SELECT ID FROM Events WHERE Name = ?');
+            const result = query.get(req.body.Data);
+            if (result){
+                res.status(200).send({ ID: result.ID});
+            } else {
+                res.status(404).send({ error: 'No matching record found'});
+            }
+        } catch(error){
+            res.status(500).send({ error: 'Failed to get ID for Event'});
+        }
+    }
+    else if (req.body.DataSet=="DyrSTORAGE"){
+        try{
+            const query = database.prepare('SELECT ID FROM DyrSTORAGE WHERE Name = ?');
+            const result = query.get(req.body.Data);
+            if (result){
+                res.status(200).send({ ID: result.ID})
+            } else {
+                res.status(404).send({ error: 'No matching record found'});
+            }
+        }
+        catch(error){
+            res.status(500).send({ error: 'Failed to get ID for DyrSTORAGE'});
+        }
+    }
+    else if (req.body.DataSet=="PersonaleSTORAGE"){
+        try{
+            const query = database.prepare('SELECT ID FROM PersonaleSTORAGE WHERE Username = ?');
+            console.log(query);
+            const result = query.get(req.body.Data);
+            console.log(result);
+            if (result){
+                res.status(200).send({ ID: result.ID});
+            } else {
+                res.status(404).send({ error: 'No matching record found'});
+            }
+        }
+        catch(error){
+            res.status(500).send({ error: 'Failed to get ID for PersonaleSTORAGE'});
+        }
+    }
+    else if (req.body.DataSet=="EventsSTORAGE"){
+        try{
+            const query = database.prepare('SELECT ID FROM EventsSTORAGE WHERE Name = ?');
+            const result = query.get(req.body.Data);
+            if (result){
+                res.status(200).send({ ID: result.ID});
+            } else {
+                res.status(404).send({ error: 'No matching record found'});
+            }
+        }
+        catch(error){
+            res.status(500).send({ error: 'Failed to get ID for EventsSTORAGE'});
+        }
+    }
+    else{
+        res.status(500).send({ error: 'Invalid DataSet' });
+    }
+})
 
 
 app.post('/api/database/update', (req, res) => {
@@ -324,56 +415,57 @@ app.post('/api/database/delete', (req, res) => {
 })
 
 app.post('/api/database/storage', (req, res) => {
-    if (String(req.body.DataSet)=="Dyr"){
+    if (req.body.DataSet=="Dyr"){
         try {
             const query = database.prepare('INSERT INTO DyrSTORAGE (Name, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax, DataSet) SELECT Name, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax, DataSet FROM Dyr WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE DyrSTORAGE SET DataSet = ? WHERE ID = ?');
-            query.run("DyrSTORAGE", req.body.ID);
-            query = database.prepare('DELETE FROM Dyr WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE DyrSTORAGE SET DataSet = ? WHERE ID = ?');
+            query2.run("DyrSTORAGE", req.body.ID);
+            const query3 = database.prepare('DELETE FROM Dyr WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Dyr Database entry stored successfully'});
         }
         catch (error){
             res.status(500).send({ error: 'Failed to update Dyr Database', details: error.message });
         }
     }
-    else if(String(req.body.DataSet)=="Personale"){
+    else if(req.body.DataSet=="Personale"){
+        console.log("running storage function for Personale");
         try {
-            const query = database.prepare('INSERT INTO PersonaleSTORAGE (Username, Password, FirstName, LastName, Mail, Job) SELECT Username, Password, FirstName, LastName, Mail, Job, DataSet FROM Personale WHERE ID = ?');
+            const query = database.prepare('INSERT INTO PersonaleSTORAGE (Username, Password, FirstName, LastName, Mail, Job) SELECT Username, Password, FirstName, LastName, Mail, Job FROM Personale WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE PersonaleSTORAGE SET DataSet = ? WHERE ID = ?');
-            query.run("PersonaleSTORAGE", req.body.ID);
-            query = database.prepare('DELETE FROM Personale WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE PersonaleSTORAGE SET DataSet = ? WHERE ID = ?');
+            query2.run("PersonaleSTORAGE", req.body.ID);
+            const query3 = database.prepare('DELETE FROM Personale WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Personale Database entry stored successfully'});
         }
         catch (error){
             res.status(500).send({ error: 'Failed to update Personale Database', details: error.message });
         }
     }
-    else if(String(req.body.DataSet)=="Beskeder"){
+    else if(req.body.DataSet=="Beskeder"){
         try {
             const query = database.prepare('INSERT INTO BeskederSTORAGE (Title, Category, Sender, Reciever) SELECT Title, Category, Sender, Reciever, DataSet FROM Beskeder WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE BeskederSTORAGE SET DataSet = ? WHERE ID = ?');
-            query.run("BeskederSTORAGE", req.body.ID);
-            query = database.prepare('DELETE FROM Beskeder WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE BeskederSTORAGE SET DataSet = ? WHERE ID = ?');
+            query2.run("BeskederSTORAGE", req.body.ID);
+            const query3 = database.prepare('DELETE FROM Beskeder WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Beskeder Database entry stored successfully'});
         }
         catch (error){
             res.status(500).send({ error: 'Failed to update Beskeder Database' });
         }
     }
-    else if(String(req.body.DataSet)=="Events"){
+    else if(req.body.DataSet=="Events"){
         try {
             const query = database.prepare('INSERT INTO EventsSTORAGE (Name, Dato, StartTime, Info) SELECT Name, Dato, StartTime, Info, DataSet FROM Events WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE EventsSTORAGE SET DataSet = ? WHERE ID = ?');
-            query.run("EventsSTORAGE", req.body.ID);
-            query = database.prepare('DELETE FROM Events WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE EventsSTORAGE SET DataSet = ? WHERE ID = ?');
+            query2.run("EventsSTORAGE", req.body.ID);
+            const query3 = database.prepare('DELETE FROM Events WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Events Database entry stored successfully'});
         }
         catch (error){
@@ -386,56 +478,56 @@ app.post('/api/database/storage', (req, res) => {
 })
 
 app.post('/api/database/retrive', (req, res)=> {
-    if (String(req.body.DataSet)=="Dyr"){
+    if (req.body.DataSet=="DyrSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO Dyr (Name, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax, DataSet) SELECT Name, Description, Personality, WeightMaleMin, WeightMaleMax, WeightFemaleMin, WeightFemaleMax, Height, Speed, YoungMin, YoungMax, DataSet FROM DyrSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE Dyr SET DataSet = ? WHERE ID = ?');
-            query.run("Dyr", req.body.ID);
-            query = database.prepare('DELETE FROM DyrSTORAGE WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE Dyr SET DataSet = ? WHERE ID = ?');
+            query2.run("Dyr", req.body.ID);
+            const query3 = database.prepare('DELETE FROM DyrSTORAGE WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Dyr Database entry retrieved successfully'});
         }
         catch (error){
             res.status(500).send({ error: 'Failed to update Dyr Database', details: error.message });
         }
     }
-    else if (String(req.body.DataSet)=="Personale"){
+    else if (req.body.DataSet=="PersonaleSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO Personale (Username, Password, FirstName, LastName, Mail, Job, DataSet) SELECT Username, Password, FirstName, LastName, Mail, Job, DataSet FROM PersonaleSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE Personale SET DataSet = ? WHERE ID = ?');
-            query.run("Personale", req.body.ID);
-            query = database.prepare('DELETE FROM PersonaleSTORAGE WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE Personale SET DataSet = ? WHERE ID = ?');
+            query2.run("Personale", req.body.ID);
+            const query3 = database.prepare('DELETE FROM PersonaleSTORAGE WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Personale Database entry retrieved successfully'});
         }
         catch (error) {
             res.status(500).send({ error: 'Failed to update Personale Database', details: error.message });
         }
     }
-    else if (String(req.body.DataSet)=="Beskeder"){
+    else if (req.body.DataSet=="BeskederSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO Beskeder (Title, Category, Sender, Reciever, DataSet) SELECT Title, Category, Sender, Reciever, DataSet FROM BeskederSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE Beskeder SET DataSet = ? WHERE ID = ?');
-            query.run("Beskeder", req.body.ID);
-            query = database.prepare('DELETE FROM BeskederSTORAGE WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE Beskeder SET DataSet = ? WHERE ID = ?');
+            query2.run("Beskeder", req.body.ID);
+            const query3 = database.prepare('DELETE FROM BeskederSTORAGE WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Beskeder Database entry retrieved successfully'});
         }
         catch (error){
             res.status(500).send({ error: 'Failed to update Beskeder Database' });
         }
     } 
-    else if (String(req.body.DataSet)=="Events"){
+    else if (req.body.DataSet=="EventsSTORAGE"){
         try {
             const query = database.prepare('INSERT INTO Events (Name, Dato, StartTime, Info, DataSet) SELECT Name, Dato, StartTime, Info, DataSet FROM EventsSTORAGE WHERE ID = ?');
             query.run(req.body.ID);
-            query = database.prepare('UPDATE Events SET DataSet = ? WHERE ID = ?');
-            query.run("Events", req.body.ID);
-            query = database.prepare('DELETE FROM EventsSTORAGE WHERE ID = ?');
-            query.run(req.body.ID);
+            const query2 = database.prepare('UPDATE Events SET DataSet = ? WHERE ID = ?');
+            query2.run("Events", req.body.ID);
+            const query3 = database.prepare('DELETE FROM EventsSTORAGE WHERE ID = ?');
+            query3.run(req.body.ID);
             res.status(200).send({ message: 'Events Database entry retrieved successfully'});
         }
         catch (error){

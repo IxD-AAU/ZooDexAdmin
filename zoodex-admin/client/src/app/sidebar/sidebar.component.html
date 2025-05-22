@@ -3,27 +3,57 @@
   <img src="Logos/Zoodex Admin Logo White Trans.png">
 
   <ul *ngIf="userIsAdmin; else noAdmin" >
-    <li><a (click)="navigateTo('/Dashboard')">Dashboard</a></li>
-    <li><a (click)="navigateTo('/Events')">Events</a></li>
-    <li><a (click)="navigateTo('/Dyr')">Dyr</a></li>
-    <li><a (click)="navigateTo('/Kalender')">Kalender</a></li>
-    <li><a (click)="navigateTo('/Personale')">Personale</a></li>
-    <li><a (click)="navigateTo('/Indstillinger')">Indstillinger</a></li>
-    <li><a (click)="navigateTo('/Profile')">Profile</a></li>
-    <li><a (click)="navigateTo('/Admin')">Admin</a></li>
+    <li [ngClass]="{'active-link': PageHighlight === 'Dashboard'}">
+      <a (click)="navigateTo('/Dashboard')">Dashboard</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Events'}">
+      <a (click)="navigateTo('/Events')">Events</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Dyr'}">
+      <a (click)="navigateTo('/Dyr')">Dyr</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Kalender'}">
+      <a (click)="navigateTo('/Kalender')">Kalender</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Personale'}">
+      <a (click)="navigateTo('/Personale')">Personale</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Indstillinger'}">
+      <a (click)="navigateTo('/Indstillinger')">Indstillinger</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Profile'}">
+      <a (click)="navigateTo('/Profile')">Profile</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Admin'}">
+      <a (click)="navigateTo('/Admin')">Admin</a>
+    </li>
     <li><a (click)="navigateTo('')">Log Ud</a></li>
   </ul>
 </div>
 
 <ng-template #noAdmin>
   <ul>
-    <li><a (click)="navigateTo('/Dashboard')">Dashboard</a></li>
-    <li><a (click)="navigateTo('/Events')">Events</a></li>
-    <li><a (click)="navigateTo('/Dyr')">Dyr</a></li>
-    <li><a (click)="navigateTo('/Kalender')">Kalender</a></li>
-    <li><a (click)="navigateTo('/Personale')">Personale</a></li>
-    <li><a (click)="navigateTo('/Indstillinger')">Indstillinger</a></li>
-    <li><a (click)="navigateTo('/Profile')">Profile</a></li>
+    <li [ngClass]="{'active-link': PageHighlight === 'Dashboard'}">
+      <a (click)="navigateTo('/Dashboard')">Dashboard</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Events'}">
+      <a (click)="navigateTo('/Events')">Events</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Dyr'}">
+      <a (click)="navigateTo('/Dyr')">Dyr</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Kalender'}">
+      <a (click)="navigateTo('/Kalender')">Kalender</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Personale'}">
+      <a (click)="navigateTo('/Personale')">Personale</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Indstillinger'}">
+      <a (click)="navigateTo('/Indstillinger')">Indstillinger</a>
+    </li>
+    <li [ngClass]="{'active-link': PageHighlight ==='Profile'}">
+      <a (click)="navigateTo('/Profile')">Profile</a>
+    </li>
     <li><a (click)="navigateTo('')">Log Ud</a></li>
   </ul>
 </ng-template>

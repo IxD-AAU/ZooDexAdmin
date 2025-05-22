@@ -6,10 +6,13 @@ section {
 
 table{
   border-collapse: collapse;
+  margin-left: 8.6%;
+  margin-top: -2.1%;
+  background-color: #A8A46C;
 }
 
 tr:nth-child(even) {
-  background-color: #EEEEEE;
+  background-color: #d8d4c5;
 }
 
 td, th {
@@ -17,3 +20,30 @@ td, th {
   text-align: left;
   padding: 8px;
 }
+
+.Label{
+  display: inline-block;
+  min-width: 130px;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.clamp{
+  display: inline-block;
+  max-width: 600px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+button[type="button"]{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  color: white;
+  background-color: #A8A46C;
+  border: solid;
+  border-color: #999562;
+}
+

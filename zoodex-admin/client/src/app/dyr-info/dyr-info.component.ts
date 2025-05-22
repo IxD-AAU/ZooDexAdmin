@@ -49,6 +49,10 @@ export class DyrInfoComponent implements OnInit {
     this.router.navigate(['/Dyr-Info-Edit'], { queryParams: { id: this.animalID, DataSet: this.dataSet } });
   }
 
+  reDirectBack():void{
+    this.router.navigate(['/Dyr']);
+  }
+
   dataSetLoader(): void{
     if (this.dataSet == "Dyr"){
       this.isDyrDataSet = true;

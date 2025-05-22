@@ -6,3 +6,39 @@ section{
 h2{
   padding-left: 20%;
 }
+
+
+.form-row{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-row label{
+  min-width: 180px;
+  margin-right: 16px;
+  text-align: left;
+}
+
+.form-row input[type="text"]{
+  min-width: 200px;
+}
+
+input[type="submit"]{
+  margin-top: 1.4%;
+  height: 30px;
+  color: white;
+  background-color: #A8A46C;
+}
+
+button[type="button"]{
+  margin-top: 0.2%;
+  height: 30px;
+  color: white;
+  background-color: #A8A46C;
+}
+
+
+#Description{
+  width: 400px;
+}

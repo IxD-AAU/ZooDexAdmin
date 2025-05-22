@@ -2,10 +2,25 @@
 
 <section *ngIf="isDataReady; else loading">
   <article *ngIf="isDyrDataSet; else DyrArkiv">
-    <p>Dyr: {{ dyrPageText[animalID].Name }}</p>
-    <p>Type: {{ dyrPageText[animalID].Type }}</p>
-    <p>Beskrivelse: {{ dyrPageText[animalID].Description }}</p>
-    <p>Personlighed: {{dyrPageText[animalID].Personality }}</p>
+    <p>
+      <span class="Label">Dyr:</span>
+      <span>{{ dyrPageText[animalID].Name }}</span>
+    </p>
+    <p>
+      <span class="Label">Type:</span>
+      <span>{{ dyrPageText[animalID].Type }}</span>
+    </p>
+    <p>
+      <span class="Label">Beskrivelse:</span>
+      <span class="clamp">{{ dyrPageText[animalID].Description }}</span>
+    </p>
+    <p>
+      <span class="Label">Personlighed:</span>
+      <span>{{dyrPageText[animalID].Personality }}</span>
+    </p>
+    <p>
+      <span class="Label">Vægt:</span>
+    </p>
     <table>
       <tr>
         <th>Vægt Han</th>
@@ -16,11 +31,21 @@
         <td>{{ dyrPageText[animalID].WeightFemaleMin }} - {{ dyrPageText[animalID].WeightFemaleMax }}</td>
       </tr>
     </table>
-    <p>Højde: {{ dyrPageText[animalID].Height }}</p>
-    <p>Hastighed: optil {{ dyrPageText[animalID].Speed }} km/t</p>
-    <p>Unger: {{ dyrPageText[animalID].YoungMin }} - {{ dyrPageText[animalID].YoungMax }}</p>
+    <p>
+      <span class="Label">Højde:</span>
+      <span>{{ dyrPageText[animalID].Height }}</span>
+    </p>
+    <p>
+      <span class="Label">Hastighed: optil</span>
+      <span>{{ dyrPageText[animalID].Speed }} km/t</span>
+    </p>
+    <p>
+      <span class="Label">Unger:</span>
+      <span>{{ dyrPageText[animalID].YoungMin }} - {{ dyrPageText[animalID].YoungMax }}</span>
+    </p>
   </article>
     <button type="button" (click)="reDirectToEdit()">Redigere</button>
+    <button type="button" (click)="reDirectBack()">Tilbag til oversigt</button>
 </section>
 
 <ng-template #loading>
@@ -29,22 +54,46 @@
 
 <ng-template #DyrArkiv>
   <article>
-    <p>Dyr: {{ dyrArkivPageText[animalID].Name }}</p>
-    <p>Type: {{ dyrArkivPageText[animalID].Type }}</p>
-    <p>Beskrivelse: {{ dyrArkivPageText[animalID].Description }}</p>
-    <p>Personlighed: {{ dyrArkivPageText[animalID].Personality }}</p>
+    <p>
+      <span class="Label">Dyr:</span>
+      <span>{{ dyrArkivPageText[animalID].Name }}</span>
+    </p>
+    <p>
+      <span class="Label">Type:</span>
+      <span>{{ dyrArkivPageText[animalID].Type }}</span>
+    </p>
+    <p>
+      <span class="Label">Beskrivelse:</span>
+      <span class="clamp">{{ dyrArkivPageText[animalID].Description }}</span>
+    </p>
+    <p>
+      <span class="Label">Personlighed:</span>
+      <span>{{dyrArkivPageText[animalID].Personality }}</span>
+    </p>
+    <p>
+      <span class="Label">Vægt:</span>
+    </p>
     <table>
       <tr>
         <th>Vægt Han</th>
         <th>Vægt Hun</th>
       </tr>
       <tr>
-        <td> {{ dyrArkivPageText[animalID].WeightMaleMin }} - {{dyrArkivPageText[animalID].WeightMaleMax}} </td>
-        <td> {{ dyrArkivPageText[animalID].WeightFemaleMin}} - {{ dyrArkivPageText[animalID].WeightFemaleMax}} </td>
+        <td>{{ dyrArkivPageText[animalID].WeightMaleMin }} - {{ dyrArkivPageText[animalID].WeightMaleMax }}</td>
+        <td>{{ dyrArkivPageText[animalID].WeightFemaleMin }} - {{ dyrArkivPageText[animalID].WeightFemaleMax }}</td>
       </tr>
     </table>
-    <p>Højde: {{ dyrArkivPageText[animalID].Height}} </p>
-    <p>Hastighed: optil {{ dyrArkivPageText[animalID].Speed }}</p>
-    <p>Under: {{ dyrArkivPageText[animalID].YoungMin}} - {{ dyrArkivPageText[animalID].YoungMax}}</p>
+    <p>
+      <span class="Label">Højde:</span>
+      <span>{{ dyrArkivPageText[animalID].Height }}</span>
+    </p>
+    <p>
+      <span class="Label">Hastighed: optil</span>
+      <span>{{ dyrArkivPageText[animalID].Speed }} km/t</span>
+    </p>
+    <p>
+      <span class="Label">Unger:</span>
+      <span>{{ dyrArkivPageText[animalID].YoungMin }} - {{ dyrArkivPageText[animalID].YoungMax }}</span>
+    </p>
   </article>
 </ng-template>

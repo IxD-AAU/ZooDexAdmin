@@ -3,18 +3,28 @@
 <section *ngIf="isDataReady; else loading">
   <article>
     <form (ngSubmit)="submitForm()" #myForm="ngForm">
-      <label for="Name">Aktivitetens Navn: </label>
-      <input type="text" [(ngModel)]='eventsPageText[this.eventID].Name' id="Name" name="Name" required><br>
-      <label for="Dato">Aktivitetens Dag: </label>
-      <input type="text" [(ngModel)]='eventsPageText[this.eventID].Dato' id="Dato" name="Dato" required><br>
-      <label for="StartTime">Aktivitetens Start Tid: </label>
-      <input type="text" [(ngModel)]='eventsPageText[this.eventID].StartTime' id="StartTime" name="StartTime" required><br>
-      <label for="Info">Aktivitetens Info: </label>
-      <input type="text" [(ngModel)]='eventsPageText[this.eventID].Info' id="Info" name="Info" required><br>
+      <div class="form-row">
+        <label for="Name">Aktivitetens Navn: </label>
+        <input type="text" [(ngModel)]='eventsPageText[this.displayIndex].Name' id="Name" name="Name" required><br>
+      </div>
+      <div class="form-row">
+        <label for="Dato">Aktivitetens Dag: </label>
+        <input type="text" [(ngModel)]='eventsPageText[this.displayIndex].Dato' id="Dato" name="Dato" required><br>
+      </div>
+      <div class="form-row">
+        <label for="StartTime">Aktivitetens Start Tid: </label>
+        <input type="text" [(ngModel)]='eventsPageText[this.displayIndex].StartTime' id="StartTime" name="StartTime" required><br>
+      </div>
+      <div class="form-row">
+        <label for="Info">Aktivitetens Info: </label>
+        <input type="text" [(ngModel)]='eventsPageText[this.displayIndex].Info' id="Info" name="Info" required><br>
+      </div>
       <input type="submit" id="submitButton" value="Gem Ændringer"><br>
     </form>
-    <button type="button" (click)="removeData()">Slet Aktivitet</button><br>
-    <button type="button" (click)="reDirectBack()">Tilbag til oversigt</button><br>
+    <div class="button-cluster">
+      <button class="removebutton" type="button" (click)="removeData()">Slet Aktivitet</button>
+      <button class="backbutton" type="button" (click)="reDirectBack()">Tilbag til oversigt</button>
+    </div>
   </article>
 </section>
 

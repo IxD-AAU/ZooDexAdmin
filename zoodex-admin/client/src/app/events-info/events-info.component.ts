@@ -19,6 +19,7 @@ export class EventsInfoComponent implements OnInit {
   public eventsPageText!: any;
   public eventID: number = 0;
   isDataReady: boolean = false;
+  public displayIndex: number = 0;
 
   constructor(
     public sidebarService: SidebarService,
@@ -33,7 +34,7 @@ export class EventsInfoComponent implements OnInit {
       this.sidebarService.open();
 
     this.route.queryParams.subscribe((params) => {
-      this.eventID = params['id'];
+      this.eventID = Number(params['id']);
     })
 
       setTimeout(()=>{
@@ -44,6 +45,8 @@ export class EventsInfoComponent implements OnInit {
         console.log(this.eventsPageText);
         this.isDataReady = true;
         console.log(this.eventID);
+        this.displayIndex = this.Findindex(this.eventID);
+        console.log(this.displayIndex);
       }, 100)
   }
   submitForm(): void {
@@ -83,4 +86,9 @@ export class EventsInfoComponent implements OnInit {
   reDirectBack(): void{
     this.router.navigate(['/Events']);
   }
+
+  Findindex(id: number):number{
+    return this.eventsPageText.findIndex((event: any)=> event.ID === id);
+  }
+
 }

@@ -10,3 +10,12 @@ body {
   margin: 0;
   font-family: Figtree, "Figtree", sans-serif;
 }
+
+
+button{
+  cursor: pointer;
+}
+
+input[type="submit"]{
+  cursor: pointer;
+}

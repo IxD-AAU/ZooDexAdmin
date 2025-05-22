@@ -52,4 +52,7 @@ export class EventsCreateComponent implements OnInit {
       );
     }
     }
+    reDirectBack():void{
+      this.router.navigate(['/Events']);
+    }
   }

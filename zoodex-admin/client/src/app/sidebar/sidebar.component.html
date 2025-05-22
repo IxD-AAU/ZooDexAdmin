@@ -1,4 +1,7 @@
 <div class="sidebar" [class.open]="IsOpen">
+
+  <img src="Logos/Zoodex Admin Logo White Trans.png">
+
   <ul *ngIf="userIsAdmin; else noAdmin" >
     <li><a (click)="navigateTo('/Dashboard')">Dashboard</a></li>
     <li><a (click)="navigateTo('/Events')">Events</a></li>

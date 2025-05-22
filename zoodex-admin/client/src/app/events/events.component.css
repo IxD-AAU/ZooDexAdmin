@@ -1,5 +1,23 @@
 .New_Aktivit {
-  padding-top: 2%;
+  position: absolute;
+  top: 2.5%;
+  left: 20%;
+  z-index: 100;
+  padding-top: 0;
+  margin: 0;
+}
+
+.New_Aktivit button {
+  margin-left: 15px;
+  color: white;
+  background-color: #5e6142;
+  border: solid;
+  border-color: #5e6142;
+  border-radius: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
 
 }
 
@@ -27,43 +45,36 @@ h1 {
   gap: 20px; /* Afstand mellem kolonner */
   margin-left: 300px; /* Giver plads til sidebaren */
 }
-/* .scrollable-container {
-    width: 450px;
-    height: 100%;
-    touch-action: pan-up;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background-color: #f0f0f0;
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-right: 0;
-    padding-bottom: 40%;
-    position: absolut;  Placeres relativt til .content-wrapper
-    top: 20px;
-    left: 0; Starter fra venstre kant af .content-wrapper
-    text-align: left;
-} */
+
+.scrollbar-wrapper{
+  margin-top: 30px;
+  width: 470px;
+  height: 550px;
+  position: relative;
+  background: transparent;
+}
 
 .scrollable-container {
   width: 450px;
-  height: 350px;
-  touch-action: pan-up;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background-color: #f0f0f0;
+  height: 550px;
+  background-color: #a0a56e;
   padding-left: 10px;
   padding-top: 20px;
-  padding-right: 0;
-  padding-bottom: 40%;
-  position: relative; /* Placeres relativt til .content-wrapper */
-  top: 20px;
+  position: absolute; /* Placeres relativt til .content-wrapper */
   left: 0; /* Starter fra venstre kant af .content-wrapper */
+  top: 0;
+  margin-right: 20px;
   text-align: left;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
   scrollbar-width: thin;
   scrollbar-color: #888 #f0f0f0;
+  border: transparent;
+  border-radius: 0px;
 }
 
-.scrollable-container::-webkit-scrollbar{
+.scrollbar-wrapper::-webkit-scrollbar{
   width: 12px;
 }
 
@@ -76,65 +87,54 @@ h1 {
   background-color: #f0f0f0;
 }
 
-.sticky-header {
+ul li a {
+  color: white;
+}
+
+ul li {
+  color: white;
+}
+
+ul li a button {
+  margin-left: 15px;
+  color: white;
+  background-color: #353723;
+  border: solid;
+  border-color: #353723;
+  border-radius: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.scrollable-container::-webkit-scrollbar-track{
+  background-color: #f0f0f0;
+}
+
+.sticky-header1 {
   position: sticky;
   top: 0;
-  background-color: #f0f0f0;
+  background-color: #627363;
+  border: transparent;
+  border-color: black;
+  margin-left: -10px;
+  margin-top: -20px;
+  padding: 10px;
+  color: white;
   z-index: 10;
   text-align: center;
 }
 
-/* Container for flexboxes the OG one */
-/*section {
-    padding-left: 25%;
-
-  }
-
- /*use this one too*/
- /*.scrollable-container {
-    width: 350px;
-    height: 10px; /*Juster højden som ønsket */
-    /*touch-action: pan-up;
-    overflow-y: auto;
-    overflow-x: hidden; /* Skjul vandret rullefelt */
-    /*background-color: #f0f0f0;
-    padding-left: 10px; /* Fjern ekstra afstand til venstre */
-    /*padding-top: 20px; /* Tilføj lidt afstand til toppen */
-    /*padding-right: 0; /* Fjern ekstra afstand til højre */
-    /*padding-bottom: 40%;/* Tilføj lidt afstand til bunden */
-    /*margin-left: 20%;/* Flytter containeren mod højre */
-    /*margin-top: 1.5%;/* Flytter containeren nedad */
-    /*text-align: left;/* Sørger for, at teksten justeres til venstre */
- /*}*/
-
-  /*this one is the one we use so far no!*/
- /*.scorollable-container {
-    width: 350px;
-    height: 10px;
-    touch-action: pan-up;
-    overflow-y: auto;
-    background-color: #f0f0f0;
-    padding-left: 10; /* Fjern ekstra afstand til venstre */
-    /*padding-top: 20px; /* Tilføj lidt afstand til toppen */
-    /*padding-right: 0; /* Fjern ekstra afstand til højre */
-    /*padding-bottom: 40%; /* Tilføj lidt afstand til bunden */
-    /*margin-left: auto; /* Skubber containeren til højre */
-    /*margin-right: 0; /* Sørger for, at der ikke er ekstra afstand til højre */
-    /*margin-top: 1.5%; /* Flytter containeren nedad */
-   /*text-align: left; /* Sørger for, at teksten justeres til venstre */
-/*}*/
-
-/*forsøg 1*/
-/*.side-by-side {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* To kolonner med lige bredde */
- /* gap: 20px; /* Afstand mellem kolonner */
-/*}
-
-.scrollable-container,
-.two-column-layout {
-  border: 1px solid #ccc; /* Valgfri kant for synlighed */
-  /*padding: 10px; /* Indvendig afstand */
-  /*box-sizing: border-box; /* Sørger for, at padding ikke påvirker bredden */
-/*}*/
-
+.sticky-header2 {
+  position: sticky;
+  background-color: #627363;
+  border: transparent;
+  border-color: black;
+  margin-left: -10px;
+  margin-top: -20px;
+  padding: 10px;
+  color: white;
+  z-index: 10;
+  text-align: center;
+}

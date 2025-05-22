@@ -45,39 +45,42 @@
       </article>
     </section>
   </div>-->
+  <div class="New_Aktivit">
+    <button (click)="reDirectToCreateNewEvent()">Nye Aktivitet</button>
+  </div>
 <div class="content-wrapper">
-<div class="New_Aktivit">
-  <button (click)="reDirectToCreateNewEvent()">Nye Aktivitet</button>
-</div>
   <div class="side-by-side">
-    <div class="scrollable-container">
-        <!-- Indhold<section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;"> -->
-          <section>
-        <h1 class="sticky-header">Dagens Aktiviteter</h1>
-        <ul>
-          <article *ngFor="let event of eventsPageTextTodayEventsOrdered; let i = index">
-            <li>
-              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextTodayEventsOrdered[i].ID-1}">{{ eventsPageTextTodayEventsOrdered[i].Name }} kl: {{ eventsPageTextTodayEventsOrdered[i].StartTime }}</a>
-            </li><br>
-
-          </article>
-        </ul>
-    </section>
-    </div>
-    <div class="scrollable-container">
-      <!-- Indhold til anden container -->
-      <!-- <section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;"> -->
-        <section>
-        <h1 class="sticky-header">Opkommende Aktiviteter</h1>
-        <ul>
-          <article *ngFor="let event of eventsPageTextUpcomingEventsOrdered; let i = index">
-            <li>
-              <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextUpcomingEventsOrdered[i].ID}">{{ eventsPageTextUpcomingEventsOrdered[i].Name }} Dato: {{eventsPageTextUpcomingEventsOrdered[i].Dato}} <button>Slet</button> </a>
-            </li><br>
-
-          </article>
-        </ul>
+    <div class="scrollbar-wrapper">
+      <div class="scrollable-container">
+          <!-- Indhold<section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;"> -->
+            <section>
+          <h1 class="sticky-header1">Dagens Aktiviteter</h1>
+          <ul>
+            <article *ngFor="let event of eventsPageTextTodayEventsOrdered; let i = index">
+              <li>
+                <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextTodayEventsOrdered[i].ID-1}">{{ eventsPageTextTodayEventsOrdered[i].Name }} kl: {{ eventsPageTextTodayEventsOrdered[i].StartTime }}</a>
+              </li><br>
+            </article>
+          </ul>
       </section>
+      </div>
+    </div>
+    <div class="scrollbar-wrapper">
+      <div class="scrollable-container">
+        <!-- Indhold til anden container -->
+        <!-- <section style="width: 100%; width: 800px; height: 400px; touch-action: pan-up; overflow-y: auto; background-color: #f0f0f0; padding: 20px;"> -->
+          <section>
+          <h1 class="sticky-header2">Kommende Aktiviteter</h1>
+          <ul>
+            <article *ngFor="let event of eventsPageTextUpcomingEventsOrdered; let i = index">
+              <li>
+                <a [routerLink]="['/Events-Info']" [queryParams]="{ id: eventsPageTextUpcomingEventsOrdered[i].ID}">{{ eventsPageTextUpcomingEventsOrdered[i].Name }} Dato: {{eventsPageTextUpcomingEventsOrdered[i].Dato}} <button>Slet</button> </a>
+              </li><br>
+
+            </article>
+          </ul>
+        </section>
+      </div>
     </div>
    <div>
 </div>

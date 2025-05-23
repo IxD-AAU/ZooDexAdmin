@@ -6,7 +6,7 @@
     <p> Efternavn: {{ pageText[ProfileData].LastName }} </p>
     <p> Mail: {{ pageText[ProfileData].Mail }} </p>
     <p> Afdeling: {{ pageText[ProfileData].Job }} </p>
-    <img src='{{ "personale/Profile_Pictures/USER" + UserID + ".jpg" }}'>
+    <img src='{{ "personale/Profile_Pictures/" + pageText[ProfileData].Username + ".jpg" }}'>
   </article>
 
 </section>

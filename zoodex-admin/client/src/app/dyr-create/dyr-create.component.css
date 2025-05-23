@@ -5,7 +5,7 @@ section{
 
 .form-row{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
@@ -31,4 +31,9 @@ button[type="button"]{
   height: 30px;
   color: white;
   background-color: #A8A46C;
+}
+
+#Description{
+  width: 400px;
+  height: 100px;
 }

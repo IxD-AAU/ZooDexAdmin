@@ -10,7 +10,7 @@ h2{
 
 .form-row{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
@@ -41,4 +41,5 @@ button[type="button"]{
 
 #Description{
   width: 400px;
+  height: 150px;
 }

@@ -104,7 +104,7 @@ export class DyrInfoEditComponent implements OnInit {
     alert("Er du sikker på at du vil flytte dyret til arkivet?");
     if (confirm("Er du sikker på at du vil flytte dyret til arkivet?")) {
       const dataSet = "Dyr";
-      this.databaseHandlerService.StoreDatabse(this.animalID, dataSet,this.dyrPageText[this.animalID].Name).subscribe({
+      this.databaseHandlerService.StoreDatabase(this.animalID, dataSet,this.dyrPageText[this.animalID].Name).subscribe({
         next: (response) => {
           console.log("Data moved successfully:", response);
           alert("Data flyttet til arkivet!");

@@ -41,7 +41,7 @@ export class DatabaseHandlerService {
 
     return this.http.post(`${this.apiUrl}/database/delete`, this.body);
   }
-  StoreDatabse(ID: number, DataSet: String, Data: String): Observable<any>{
+  StoreDatabase(ID: number, DataSet: String, Data: String): Observable<any>{
 
     this.body = {
       HandlerData: Data,

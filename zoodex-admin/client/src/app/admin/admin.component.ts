@@ -135,7 +135,7 @@ export class AdminComponent implements OnInit{
       console.log("Data to move:",dataToMove);
 
       if (moveset === "Store") {
-        this.databaseHandlerService.StoreDatabse(dataToMove.ID, dataToMove.DataSet,Data).subscribe(
+        this.databaseHandlerService.StoreDatabase(dataToMove.ID, dataToMove.DataSet,Data).subscribe(
           (storeResponse) => { console.log('User Moved', storeResponse); },
           (storeError) => { console.log('Error', storeError); }
         );

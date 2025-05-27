@@ -126,7 +126,7 @@ export class EventsComponent {
     let n = 0;
     while (n < L){
       const eventDayOfYear = this.getDayOfYear(eventList[n].Dato);
-      if ( eventDayOfYear >= currentDayOfYear) {
+      if ( eventDayOfYear > currentDayOfYear) {
         outputArray.push(eventList[n]);
       }
       n++
